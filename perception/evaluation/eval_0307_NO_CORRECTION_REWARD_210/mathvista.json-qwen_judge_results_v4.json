@@ -1,0 +1,5002 @@
+[
+    {
+        "id": "1",
+        "extracted_answer": "<answer>\n\\boxed{0.1}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "2",
+        "extracted_answer": "<answer>\n1000</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "3",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "4",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "5",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "6",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "7",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "8",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "9",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "10",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "11",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "12",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "13",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "14",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "15",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "16",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "17",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "18",
+        "extracted_answer": "<answer>\n(B)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "19",
+        "extracted_answer": "<answer>\n400\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "20",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "21",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "22",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "23",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "24",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "25",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "26",
+        "extracted_answer": "<answer>\n(B) no\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "27",
+        "extracted_answer": "<answer>20</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "28",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "29",
+        "extracted_answer": "<answer>\nThe image is a stained glass window and does not provide information about the age gap between King Richard III and Anne Neville. Therefore, it is not possible to determine the age gap based on this image.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "30",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "31",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "32",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "33",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "34",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "35",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "36",
+        "extracted_answer": "<answer>20</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "37",
+        "extracted_answer": "<answer>\n\\boxed{2}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "38",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "39",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "40",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "41",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the two individuals. Therefore, I cannot provide a numerical answer.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "42",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the age gap between the two individuals.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "43",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "44",
+        "extracted_answer": "<answer>$18</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "45",
+        "extracted_answer": "<answer>\n-3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "46",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "47",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "48",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "49",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "50",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "51",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "52",
+        "extracted_answer": "<answer>\n6\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "53",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 10 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "54",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "55",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "56",
+        "extracted_answer": "<answer>\n\\boxed{6}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "57",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "58",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "59",
+        "extracted_answer": "<answer>\nC</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "60",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 20 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "61",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "62",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "63",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "64",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "65",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "66",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "67",
+        "extracted_answer": "<answer>\n\\boxed{16}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "68",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "69",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "70",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "71",
+        "extracted_answer": "<answer>18</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "72",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "73",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "74",
+        "extracted_answer": "<answer>47.6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "75",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "76",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "77",
+        "extracted_answer": "<answer>\n\\boxed{2019}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "78",
+        "extracted_answer": "<answer>\n\\boxed{11}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "79",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "80",
+        "extracted_answer": "<answer>\n(A)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "81",
+        "extracted_answer": "<answer>\n\\boxed{0.2}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "82",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "83",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "84",
+        "extracted_answer": "<answer>\n\\boxed{45.0}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "85",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "86",
+        "extracted_answer": "<answer>\nG\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "87",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "88",
+        "extracted_answer": "<answer>\n\\boxed{30}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "89",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "90",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "91",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "92",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "93",
+        "extracted_answer": "<answer>197.3</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "94",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "95",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "96",
+        "extracted_answer": "<answer>\n3.9\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "97",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "98",
+        "extracted_answer": "<answer>\n\\boxed{2}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "99",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "100",
+        "extracted_answer": "<answer>\n12\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "101",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "102",
+        "extracted_answer": "<answer>\n\\boxed{6}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "103",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "104",
+        "extracted_answer": "<answer>\n4.0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "105",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "106",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "107",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "108",
+        "extracted_answer": "<answer>51.05</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "109",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "110",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "111",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "112",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "113",
+        "extracted_answer": "<answer>\n\\boxed{20}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "114",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "115",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "116",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "117",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "118",
+        "extracted_answer": "<answer>\n\\boxed{1}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "119",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "120",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "121",
+        "extracted_answer": "<answer>\n5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "122",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "123",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "124",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "125",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "126",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "127",
+        "extracted_answer": "<answer>\n\\boxed{5}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "128",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "129",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "130",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "131",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "132",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "133",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "134",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "135",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "136",
+        "extracted_answer": "<answer>64</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "137",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "138",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "139",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "140",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "141",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "142",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "143",
+        "extracted_answer": "<answer>\nC</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "144",
+        "extracted_answer": "<answer>13.8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "145",
+        "extracted_answer": "<answer>\n\\boxed{10}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "146",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "147",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "148",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "149",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "150",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "151",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "152",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "153",
+        "extracted_answer": "<answer>\n(D) mice\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "154",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "155",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "156",
+        "extracted_answer": "<answer>\n\\boxed{4}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "157",
+        "extracted_answer": "<answer>\\boxed{10305}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "158",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the age gap between the two individuals. Therefore, it's not possible to provide a specific integer value for the age gap.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "159",
+        "extracted_answer": "<answer>\n100\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "160",
+        "extracted_answer": "<answer>\n(C) 12\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "161",
+        "extracted_answer": "<answer>\n1853\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "162",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "163",
+        "extracted_answer": "<answer>\\boxed{7147}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "164",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "165",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "166",
+        "extracted_answer": "<answer>\nE\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "167",
+        "extracted_answer": "<answer>\n\\boxed{2}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "168",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "169",
+        "extracted_answer": "<answer>\n5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "170",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "171",
+        "extracted_answer": "<answer>\n\\boxed{20}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "172",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "173",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "174",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "175",
+        "extracted_answer": "<answer>\n24\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "176",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "177",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "178",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "179",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "180",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "181",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "182",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "183",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "184",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "185",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "186",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "187",
+        "extracted_answer": "<answer>\\boxed{905}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "188",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "189",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "190",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "191",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "192",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "193",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "194",
+        "extracted_answer": "<answer>\n50\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "195",
+        "extracted_answer": "<answer>\nC</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "196",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "197",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "198",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "199",
+        "extracted_answer": "<answer>\n\\boxed{0.86}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "200",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "201",
+        "extracted_answer": "<answer>\\boxed{19}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "202",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "203",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "204",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "205",
+        "extracted_answer": "<answer>\n24\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "206",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "207",
+        "extracted_answer": "<answer>\n\\boxed{5}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "208",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the leftmost and the rightmost person. However, based on visual cues, the rightmost person appears to be younger than the leftmost person. The exact age gap is not calculable from the image.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "209",
+        "extracted_answer": "<answer>\n28.3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "210",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "211",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "212",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "213",
+        "extracted_answer": "<answer>\n\\boxed{2009}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "214",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "215",
+        "extracted_answer": "<answer>\n8\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "216",
+        "extracted_answer": "<answer>\n90</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "217",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "218",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "219",
+        "extracted_answer": "<answer>\\boxed{1}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "220",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "221",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "222",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "223",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "224",
+        "extracted_answer": "<answer>\n(B) No\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "225",
+        "extracted_answer": "<answer>\n\\boxed{[4, 1, 2, 3, 4, 5, 6, 7, 4, 1, 2, 3, 4, 5, 6, 7]}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "226",
+        "extracted_answer": "<answer>\nE\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "227",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "228",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "229",
+        "extracted_answer": "<answer>\n(E) 0.30%\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "230",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "231",
+        "extracted_answer": "<answer>E</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "232",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "233",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "234",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "235",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "236",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "237",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "238",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "239",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "240",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "241",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "242",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "243",
+        "extracted_answer": "<answer>\n12\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "244",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "245",
+        "extracted_answer": "<answer>\n24\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "246",
+        "extracted_answer": "<answer>\n\\boxed{0.69}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "247",
+        "extracted_answer": "<answer>\n\\boxed{7.38}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "248",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "249",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "250",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "251",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "252",
+        "extracted_answer": "<answer>\n\\boxed{1.62}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "253",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "254",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "255",
+        "extracted_answer": "<answer>\nC</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "256",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "257",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "258",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "259",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "260",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "261",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the two individuals. However, based on their appearance, it is reasonable to estimate that they are both adults, likely in their 30s or 40s. Since the question asks for an integer answer and the image does not provide specific ages, the answer cannot be determined from the image alone.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "262",
+        "extracted_answer": "<answer>39</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "263",
+        "extracted_answer": "<answer>\n\\boxed{25}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "264",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "265",
+        "extracted_answer": "<answer>\n\\boxed{11}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "266",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "267",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "268",
+        "extracted_answer": "<answer>10.4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "269",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "270",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "271",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "272",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "273",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "274",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "275",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "276",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "277",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "278",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "279",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "280",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "281",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "282",
+        "extracted_answer": "<answer>\n100\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "283",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "284",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "285",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "286",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "287",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "288",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "289",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "290",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "291",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "292",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "293",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "294",
+        "extracted_answer": "<answer>\n\\boxed{-0.0072}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "295",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "296",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "297",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "298",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "299",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the center and the rightmost person. Therefore, it's not possible to provide a numerical answer based solely on the image.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "300",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "301",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "302",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "303",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "304",
+        "extracted_answer": "<answer>\n\\boxed{169}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "305",
+        "extracted_answer": "<answer>\n9\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "306",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "307",
+        "extracted_answer": "<answer>\n\\boxed{162800}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "308",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "309",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "310",
+        "extracted_answer": "<answer>\n\\boxed{C}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "311",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the age gap between the two individuals. Therefore, it is not possible to provide a numerical answer.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "312",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "313",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "314",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "315",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "316",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "317",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "318",
+        "extracted_answer": "<answer>\n(C) 2256\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "319",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "320",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "321",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "322",
+        "extracted_answer": "<answer>\nD</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "323",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "324",
+        "extracted_answer": "<answer>\n50\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "325",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "326",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "327",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "328",
+        "extracted_answer": "<answer>\n18\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "329",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "330",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "331",
+        "extracted_answer": "<answer>64</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "332",
+        "extracted_answer": "<answer>\n\\boxed{7873}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "333",
+        "extracted_answer": "<answer>\n\\boxed{A}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "334",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "335",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "336",
+        "extracted_answer": "<answer>\n8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "337",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "338",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "339",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "340",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "341",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "342",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "343",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "344",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "345",
+        "extracted_answer": "<answer>25</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "346",
+        "extracted_answer": "<answer>\n\\boxed{1}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "347",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "348",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "349",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "350",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "351",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "352",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "353",
+        "extracted_answer": "<answer>\n\\boxed{2.0}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "354",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "355",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "356",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "357",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "358",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "359",
+        "extracted_answer": "<answer>\n-7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "360",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "361",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "362",
+        "extracted_answer": "<answer>\n8\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "363",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "364",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "365",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "366",
+        "extracted_answer": "<answer>\nSince the image does not provide specific information about the ages of the individuals, it is not possible to determine the exact age gap between them. Therefore, no integer answer can be provided.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "367",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the two individuals. However, based on their physical appearances, the man on the left appears to be older than the man on the right. A reasonable estimate might be around 10 years, but this is speculative.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "368",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "369",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "370",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "371",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "372",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "373",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "374",
+        "extracted_answer": "<answer>\nThe sum of the accuracies of the algorithms \"calf\" and \"ivory\" is 9 + 4 = 13.\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "375",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "376",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "377",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "378",
+        "extracted_answer": "<answer>\nD</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "379",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "380",
+        "extracted_answer": "<answer>\n6\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "381",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "382",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "383",
+        "extracted_answer": "<answer>\n131,253.5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "384",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "385",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "386",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "387",
+        "extracted_answer": "<answer>75</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "388",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "389",
+        "extracted_answer": "<answer>\n(A)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "390",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "391",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "392",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "393",
+        "extracted_answer": "<answer>54</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "394",
+        "extracted_answer": "<answer>\nF\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "395",
+        "extracted_answer": "<answer>It is not possible to determine the exact average age from the image.</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "396",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "397",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "398",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "399",
+        "extracted_answer": "<answer>\n\\boxed{6}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "400",
+        "extracted_answer": "<answer>\n(G)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "401",
+        "extracted_answer": "<answer>\\boxed{1}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "402",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "403",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "404",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "405",
+        "extracted_answer": "<answer>30</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "406",
+        "extracted_answer": "<answer>\n\\boxed{15}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "407",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "408",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "409",
+        "extracted_answer": "<answer>\n\\boxed{4}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "410",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "411",
+        "extracted_answer": "<answer>100</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "412",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "413",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "414",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "415",
+        "extracted_answer": "<answer>\n\\boxed{15017}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "416",
+        "extracted_answer": "<answer>\n800</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "417",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "418",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "419",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "420",
+        "extracted_answer": "<answer>\n0.00\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "421",
+        "extracted_answer": "<answer>\n\\boxed{-47040}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "422",
+        "extracted_answer": "<answer>\n\\boxed{10}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "423",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "424",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "425",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "426",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "427",
+        "extracted_answer": "<answer>\n7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "428",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 35 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "429",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "430",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "431",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "432",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "433",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "434",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "435",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "436",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "437",
+        "extracted_answer": "<answer>\n\\boxed{302}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "438",
+        "extracted_answer": "<answer>\nThe image does not provide enough specific details to accurately determine the age gap between the two individuals. However, based on their physical appearance, the age gap could be estimated to be around 5 to 10 years. For the purpose of this question, I will provide a general estimate.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "439",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "440",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "441",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "442",
+        "extracted_answer": "<answer>\\boxed{3}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "443",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "444",
+        "extracted_answer": "<answer>\n7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "445",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "446",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "447",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "448",
+        "extracted_answer": "<answer>\n\\boxed{2016}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "449",
+        "extracted_answer": "<answer>45</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "450",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "451",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "452",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "453",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "454",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "455",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "456",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "457",
+        "extracted_answer": "<answer>\\boxed{4421}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "458",
+        "extracted_answer": "<answer>\n\\boxed{23}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "459",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "460",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "461",
+        "extracted_answer": "<answer>\nThe question cannot be answered based on the provided image. The image does not contain the frequency spectrum of a windowed segment of audio signal as described in the question. Therefore, the answer is not determinable from the given information.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "462",
+        "extracted_answer": "<answer>\n\\boxed{1}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "463",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "464",
+        "extracted_answer": "<answer>\nF\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "465",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "466",
+        "extracted_answer": "<answer>\n(B) no\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "467",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "468",
+        "extracted_answer": "<answer>\n7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "469",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "470",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "471",
+        "extracted_answer": "<answer>\n\\boxed{8}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "472",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "473",
+        "extracted_answer": "<answer>\nSince the exact ages of the individuals are unknown, it is not possible to determine the age gap between them. Therefore, no integer value can be provided.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "474",
+        "extracted_answer": "<answer>\n12\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "475",
+        "extracted_answer": "<answer>\n\\boxed{8}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "476",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "477",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "478",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "479",
+        "extracted_answer": "<answer>\n2.55\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "480",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "481",
+        "extracted_answer": "<answer>\nThe image does not provide enough specific details to accurately determine the age gap between the two individuals. However, based on their physical appearance and the context, it could be anywhere from a few years to a decade or more. Since the question asks for an integer answer and the image does not provide enough information to be precise, I cannot provide a definitive numerical answer.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "482",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "483",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "484",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "485",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "486",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "487",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "488",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "489",
+        "extracted_answer": "<answer>\n\\boxed{27}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "490",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "491",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "492",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "493",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "494",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "495",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "496",
+        "extracted_answer": "<answer>\n20\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "497",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "498",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "499",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "500",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the age gap between the two individuals.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "501",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "502",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "503",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "504",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "505",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "506",
+        "extracted_answer": "<answer>\n[2014, 2015]\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "507",
+        "extracted_answer": "<answer>\n(C) garter snakes would decrease\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "508",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "509",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "510",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "511",
+        "extracted_answer": "<answer>9</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "512",
+        "extracted_answer": "<answer>\n\\(\\boxed{0.33}\\)\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "513",
+        "extracted_answer": "<answer>\n(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "514",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "True"
+    },
+    {
+        "id": "515",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "516",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "517",
+        "extracted_answer": "<answer>\n-1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "518",
+        "extracted_answer": "<answer>\n10 years\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "519",
+        "extracted_answer": "<answer>\n\\boxed{6}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "520",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "521",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "522",
+        "extracted_answer": "<answer>\n\\boxed{7}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "523",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "524",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "525",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "526",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "527",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "528",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "529",
+        "extracted_answer": "<answer>\n76\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "530",
+        "extracted_answer": "<answer>9</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "531",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "532",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "533",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "534",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "535",
+        "extracted_answer": "<answer>\n\\boxed{-8}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "536",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "537",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "538",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "539",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "540",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "541",
+        "extracted_answer": "<answer>E</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "542",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "543",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "544",
+        "extracted_answer": "<answer>\n\\boxed{44}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "545",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "546",
+        "extracted_answer": "<answer>\n\\boxed{1}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "547",
+        "extracted_answer": "<answer>\nD</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "548",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "549",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "550",
+        "extracted_answer": "<answer>\n\\boxed{8}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "551",
+        "extracted_answer": "<answer>14</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "552",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "553",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "554",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "555",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "556",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "557",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "558",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "559",
+        "extracted_answer": "<answer>\n50\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "560",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "561",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "562",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "563",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "564",
+        "extracted_answer": "<answer>\n4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "565",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "566",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "567",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "568",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "569",
+        "extracted_answer": "<answer>\n78\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "570",
+        "extracted_answer": "<answer>\n5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "571",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "572",
+        "extracted_answer": "<answer>\nThe function starts decreasing after the initial plateau at the point where the value drops from approximately 0.25 to around 0.15. This occurs around the 4th point on the x-axis.\n\n\\boxed{4}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "573",
+        "extracted_answer": "<answer>\n\\boxed{53}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "574",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "575",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "576",
+        "extracted_answer": "<answer>\n(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "577",
+        "extracted_answer": "<answer>\n\\boxed{-104}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "578",
+        "extracted_answer": "<answer>\\boxed{10347}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "579",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "580",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "581",
+        "extracted_answer": "<answer>3</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "582",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "583",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "584",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "585",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "586",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "587",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "588",
+        "extracted_answer": "<answer>\n1982\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "589",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "590",
+        "extracted_answer": "<answer>30</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "591",
+        "extracted_answer": "<answer>3</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "592",
+        "extracted_answer": "<answer>\n\\boxed{4}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "593",
+        "extracted_answer": "<answer>\n\\boxed{273}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "594",
+        "extracted_answer": "<answer>\n2005\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "595",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "596",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "597",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "598",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "599",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "600",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "601",
+        "extracted_answer": "<answer>0.47</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "602",
+        "extracted_answer": "<answer>\n18\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "603",
+        "extracted_answer": "<answer>\n\\boxed{200}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "604",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "605",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "606",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "607",
+        "extracted_answer": "<answer>\n3</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "608",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "609",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "610",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "611",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "612",
+        "extracted_answer": "<answer>4</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "613",
+        "extracted_answer": "<answer>\n\\boxed{10}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "614",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "615",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "616",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "617",
+        "extracted_answer": "<answer>\n\\boxed{7}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "618",
+        "extracted_answer": "<answer>\n(B) no\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "619",
+        "extracted_answer": "<answer>\n\\boxed{16}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "620",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "621",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "622",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "623",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "624",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "625",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "626",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "627",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "628",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "629",
+        "extracted_answer": "<answer>\n20\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "630",
+        "extracted_answer": "<answer>\n\\boxed{22}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "631",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "632",
+        "extracted_answer": "<answer>52</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "633",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "634",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "635",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "636",
+        "extracted_answer": "<answer>\n\\boxed{34}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "637",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "638",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "639",
+        "extracted_answer": "<answer>\n500\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "640",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "641",
+        "extracted_answer": "<answer>\n\\boxed{0.01}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "642",
+        "extracted_answer": "<answer>\nE\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "643",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "644",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "645",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "646",
+        "extracted_answer": "<answer>\n25\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "647",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "648",
+        "extracted_answer": "<answer>\n\\boxed{-1}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "649",
+        "extracted_answer": "<answer>3</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "650",
+        "extracted_answer": "<answer>\n24.0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "651",
+        "extracted_answer": "<answer>\n7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "652",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "653",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "654",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "655",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "656",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "657",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "658",
+        "extracted_answer": "<answer>\n\\boxed{1}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "659",
+        "extracted_answer": "<answer>\n991\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "660",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "661",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "662",
+        "extracted_answer": "<answer>\n\\boxed{80}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "663",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "664",
+        "extracted_answer": "<answer>\n\\boxed{17}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "665",
+        "extracted_answer": "<answer>\n\\boxed{A}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "666",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "667",
+        "extracted_answer": "<answer>\\boxed{2015}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "668",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "669",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "670",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "671",
+        "extracted_answer": "<answer>\nThe area of the semicircle is \\( \\frac{9\\pi}{2} \\). Using \\( \\pi \\approx 3.14159 \\):\n\n\\[ \\frac{9\\pi}{2} \\approx \\frac{9 \\times 3.14159}{2} \\approx \\frac{28.27431}{2} \\approx 14.137155 \\]\n\nRounded to two decimal places, the area is \\( 14.14 \\).\n\n\\boxed{14.14}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "672",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "673",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "674",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "675",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "676",
+        "extracted_answer": "<answer>\\boxed{0}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "677",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "678",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "679",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "680",
+        "extracted_answer": "<answer>\n5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "681",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "682",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "683",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "684",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "685",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "686",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "687",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "688",
+        "extracted_answer": "<answer>\nE</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "689",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "690",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "691",
+        "extracted_answer": "<answer>\n\\boxed{120}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "692",
+        "extracted_answer": "<answer>\n(A) Grasshoppers will decrease.\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "693",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "694",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "695",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "696",
+        "extracted_answer": "<answer>\n(B)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "697",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "698",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "699",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the center and the rightmost person. Therefore, it's not possible to provide a numerical answer.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "700",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "701",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "702",
+        "extracted_answer": "<answer>\n\\boxed{400}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "703",
+        "extracted_answer": "<answer>\n2372.1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "704",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "705",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "706",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "707",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "708",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "709",
+        "extracted_answer": "<answer>\n\\boxed{4}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "710",
+        "extracted_answer": "<answer>0</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "711",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "712",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "713",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "714",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "715",
+        "extracted_answer": "<answer>\n(B)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "716",
+        "extracted_answer": "<answer>\n\\boxed{D}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "717",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "718",
+        "extracted_answer": "<answer>\n\\boxed{0.21}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "719",
+        "extracted_answer": "<answer>13</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "720",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "721",
+        "extracted_answer": "<answer>\n\\boxed{0}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "722",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "723",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "724",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "725",
+        "extracted_answer": "<answer>\n\\boxed{-26}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "726",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "727",
+        "extracted_answer": "<answer>\n\\boxed{70}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "728",
+        "extracted_answer": "<answer>\n\\boxed{7}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "729",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "730",
+        "extracted_answer": "<answer>\n6.9\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "731",
+        "extracted_answer": "<answer>\n40\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "732",
+        "extracted_answer": "<answer>\n(A) Grasshopper\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "733",
+        "extracted_answer": "<answer>\n\\boxed{45.0}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "734",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "735",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "736",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "737",
+        "extracted_answer": "<answer>\n(D)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "738",
+        "extracted_answer": "<answer>\n(B)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "739",
+        "extracted_answer": "<answer>\n23\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "740",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "741",
+        "extracted_answer": "<answer>\n10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "742",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "743",
+        "extracted_answer": "<answer>\n10.53\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "744",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "745",
+        "extracted_answer": "<answer>10 years</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "746",
+        "extracted_answer": "<answer>\n7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "747",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "748",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "749",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "750",
+        "extracted_answer": "<answer>\\boxed{8}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "751",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "752",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "753",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "754",
+        "extracted_answer": "<answer>\n(A) Population will decrease\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "755",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "756",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "757",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "758",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "759",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "760",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "761",
+        "extracted_answer": "<answer>\n(D) Increase\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "762",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "763",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "764",
+        "extracted_answer": "<answer>12</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "765",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "766",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "767",
+        "extracted_answer": "<answer>\n5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "768",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "769",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "770",
+        "extracted_answer": "<answer>\nThe amplitude of the function is 1.\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "771",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "772",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "773",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "774",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "775",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "776",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "777",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "778",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "779",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "780",
+        "extracted_answer": "<answer>\n\\boxed{5}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "781",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "782",
+        "extracted_answer": "<answer>\n\\boxed{4.5}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "783",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "784",
+        "extracted_answer": "<answer>70</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "785",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "786",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "787",
+        "extracted_answer": "<answer>\n0\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "788",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "789",
+        "extracted_answer": "<answer>\n\\boxed{10}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "790",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "791",
+        "extracted_answer": "<answer>\n\\boxed{6.55}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "792",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "793",
+        "extracted_answer": "<answer>\n1578\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "794",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "795",
+        "extracted_answer": "<answer>\nThe age gap between the two individuals in the image is approximately 20 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "796",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "797",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "798",
+        "extracted_answer": "<answer>(E)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "799",
+        "extracted_answer": "<answer>\n\\boxed{13.00}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "800",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "801",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "802",
+        "extracted_answer": "<answer>$69.00</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "803",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "804",
+        "extracted_answer": "<answer>\n\\boxed{A}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "805",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "806",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "807",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "808",
+        "extracted_answer": "<answer>9</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "809",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "810",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "811",
+        "extracted_answer": "<answer>\n34\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "812",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "813",
+        "extracted_answer": "<answer>\n\\boxed{30}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "814",
+        "extracted_answer": "<answer>\n\\boxed{100000000}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "815",
+        "extracted_answer": "<answer>(B)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "816",
+        "extracted_answer": "<answer>\n(A)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "817",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "818",
+        "extracted_answer": "<answer>0.32</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "819",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "820",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "821",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "822",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "823",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "824",
+        "extracted_answer": "<answer>\n0.13\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "825",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "826",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "827",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "828",
+        "extracted_answer": "<answer>2.7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "829",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "830",
+        "extracted_answer": "<answer>\n5</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "831",
+        "extracted_answer": "<answer>\n679\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "832",
+        "extracted_answer": "<answer>\n\\boxed{-2}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "833",
+        "extracted_answer": "<answer>\n\\boxed{-1.7}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "834",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "835",
+        "extracted_answer": "<answer>\n\\boxed{25} </answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "836",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "837",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "838",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "839",
+        "extracted_answer": "<answer>\n5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "840",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "841",
+        "extracted_answer": "<answer>9</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "842",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "843",
+        "extracted_answer": "<answer>\n(B) no\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "844",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "845",
+        "extracted_answer": "<answer>\n10\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "846",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "847",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "848",
+        "extracted_answer": "<answer>3</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "849",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "850",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "851",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "852",
+        "extracted_answer": "<answer>\n\\boxed{40}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "853",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "854",
+        "extracted_answer": "<answer>\n(C) Fish\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "855",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "856",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "857",
+        "extracted_answer": "<answer>\n\\boxed{9}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "858",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "859",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 20 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "860",
+        "extracted_answer": "<answer>\n\\boxed{86}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "861",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "862",
+        "extracted_answer": "<answer>\n\\boxed{19.54}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "863",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "864",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 10 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "865",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "866",
+        "extracted_answer": "<answer>D</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "867",
+        "extracted_answer": "<answer>\n22\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "868",
+        "extracted_answer": "<answer>\n5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "869",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "870",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "871",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "872",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "873",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "874",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "875",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "876",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "877",
+        "extracted_answer": "<answer>\n\\boxed{7}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "878",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "879",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "880",
+        "extracted_answer": "<answer>5.4974</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "881",
+        "extracted_answer": "<answer>\n(A)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "882",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "883",
+        "extracted_answer": "<answer>\n14\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "884",
+        "extracted_answer": "<answer>\nD</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "885",
+        "extracted_answer": "<answer>\n18\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "886",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "887",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "888",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "889",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "890",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "891",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "892",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "893",
+        "extracted_answer": "<answer>\n\\boxed{0}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "894",
+        "extracted_answer": "<answer>\n\\boxed{9}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "895",
+        "extracted_answer": "<answer>\nE\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "896",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "897",
+        "extracted_answer": "<answer>(A)</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "898",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "899",
+        "extracted_answer": "<answer>\\boxed{2123}</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "900",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "901",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "902",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "903",
+        "extracted_answer": "<answer>\nC</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "904",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "905",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "906",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "907",
+        "extracted_answer": "<answer>\n\\boxed{1970, 1971, 1973}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "908",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "909",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "910",
+        "extracted_answer": "<answer>\n2\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "911",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "912",
+        "extracted_answer": "<answer>\n4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "913",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "914",
+        "extracted_answer": "<answer>\n9\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "915",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "916",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "917",
+        "extracted_answer": "<answer>\n1</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "918",
+        "extracted_answer": "<answer>?</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "919",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "920",
+        "extracted_answer": "<answer>\n30\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "921",
+        "extracted_answer": "<answer>(D)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "922",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "923",
+        "extracted_answer": "<answer>\nF\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "924",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "925",
+        "extracted_answer": "<answer>19.5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "926",
+        "extracted_answer": "<answer>\n\\boxed{14.14}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "927",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "928",
+        "extracted_answer": "<answer>\n$5\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "929",
+        "extracted_answer": "<answer>\n85\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "930",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "931",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "932",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "933",
+        "extracted_answer": "<answer>9606</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "934",
+        "extracted_answer": "<answer>\n\\boxed{10000}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "935",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "936",
+        "extracted_answer": "<answer>1</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "937",
+        "extracted_answer": "<answer>\nA</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "938",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "939",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "940",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "941",
+        "extracted_answer": "<answer>\n\\boxed{0.75}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "942",
+        "extracted_answer": "<answer>\n\\boxed{0}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "943",
+        "extracted_answer": "<answer>\n2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "944",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "945",
+        "extracted_answer": "<answer>10</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "946",
+        "extracted_answer": "<answer>16</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "947",
+        "extracted_answer": "<answer>(C)</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "948",
+        "extracted_answer": "<answer>11.25</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "949",
+        "extracted_answer": "<answer>\n56\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "950",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "951",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "952",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "953",
+        "extracted_answer": "<answer>\n50\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "954",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "955",
+        "extracted_answer": "<answer>\n(C)\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "956",
+        "extracted_answer": "<answer>7</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "957",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "958",
+        "extracted_answer": "<answer>C</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "959",
+        "extracted_answer": "<answer>32</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "960",
+        "extracted_answer": "<answer>\nThe image does not provide enough information to determine the exact age gap between the two individuals. Therefore, it's not possible to provide a numerical answer based solely on the image.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "961",
+        "extracted_answer": "<answer>\n7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "962",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "963",
+        "extracted_answer": "<answer>\n\\boxed{3}\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "964",
+        "extracted_answer": "<answer>\n\\boxed{5}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "965",
+        "extracted_answer": "<answer>\n30\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "966",
+        "extracted_answer": "<answer>\n3\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "967",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "968",
+        "extracted_answer": "<answer>6</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "969",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "970",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "971",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "972",
+        "extracted_answer": "<answer>\nB</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "973",
+        "extracted_answer": "<answer>\n1\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "974",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "975",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "976",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "977",
+        "extracted_answer": "<answer>\nD\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "978",
+        "extracted_answer": "<answer>\n7\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "979",
+        "extracted_answer": "<answer>\\boxed{9107}</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "980",
+        "extracted_answer": "<answer>\n12\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "981",
+        "extracted_answer": "<answer>\n70.4\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "982",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "983",
+        "extracted_answer": "<answer>8</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "984",
+        "extracted_answer": "<answer>B</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "985",
+        "extracted_answer": "<answer>5</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "986",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "987",
+        "extracted_answer": "<answer>\n\\boxed{383}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "988",
+        "extracted_answer": "<answer>\nThe age gap between the two people in the image is approximately 5 years.\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "989",
+        "extracted_answer": "<answer>\n9\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "990",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "991",
+        "extracted_answer": "<answer>\nC\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "992",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "993",
+        "extracted_answer": "<answer>9</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "994",
+        "extracted_answer": "<answer>A</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "995",
+        "extracted_answer": "<answer>\n18.27\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "996",
+        "extracted_answer": "<answer>2</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "997",
+        "extracted_answer": "<answer>\nB\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "998",
+        "extracted_answer": "<answer>\nA\n</answer>",
+        "judge_result": "true"
+    },
+    {
+        "id": "999",
+        "extracted_answer": "<answer>\n\\boxed{8.7}\n</answer>",
+        "judge_result": "false"
+    },
+    {
+        "id": "1000",
+        "extracted_answer": "<answer>\n9\n</answer>",
+        "judge_result": "true"
+    }
+]

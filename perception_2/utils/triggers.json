@@ -1,0 +1,18 @@
+{
+  "english": [
+      "Wait, I may be mistaken about what I see in the image.",
+      "Wait, I may be mistaken about what I see in the image,",
+      "Hold on, I may be mistaken about what I see in the image, so I should double-check the image: ",
+      "But I may make mistake about the image content. I will try to correct what I say previously.",
+      "But I may have misinterpreted some visual details in the image.",
+      "Wait, let's double check.",
+      "Wait, is my previous output actually correct?"
+  ],
+  "chinese": [
+    "等等，我可能对图像中的内容产生了误判。",
+    "等等，我对图像内容的理解可能是错误的，",
+    "等等，我们再核对一下图片，",
+    "等一下，我之前的输出真的正确吗？",
+    "不过，我可能误解了图像中的一些视觉细节，"
+  ]
+}

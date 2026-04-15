@@ -1,0 +1,168 @@
+"""
+MMMU_Pro dataset structure and adaptations
+------------------------------------------
+Hugging Face dataset: `MMMU/MMMU_Pro`
+
+Observed schema for `standard (4 options)` / `standard (10 options)`:
+- `id`: sample id
+- `question`: question text, may reference `<image 1>`, `<image 2>`, ...
+- `options`: a Python-literal string such as "['A text', 'B text', ...]"
+- `image_1` ... `image_7`: image columns, some are null
+- `answer`: gold answer letter such as `A`, `B`, ...
+- extra metadata: `explanation`, `img_type`, `topic_difficulty`, `subject`
+
+Adaptations in this script:
+- Parse the stringified `options` field into a Python list before formatting choices.
+- Collect all non-null image columns so one sample can contain multiple images.
+- Preserve the original metadata in the output, but drop image objects before JSON dump.
+- Keep the existing MathVista-style evaluation flow and only replace benchmark-specific fields.
+"""
+
+import argparse
+import json
+import os
+import random
+import ast
+
+from datasets import load_dataset
+from qwen_vl_utils import process_vision_info
+from tqdm import tqdm
+from transformers import Qwen2_5_VLProcessor
+from vllm import LLM, SamplingParams
+
+
+SYSTEM_PROMPT = (
+    "You FIRST think about the reasoning process as an internal monologue and then provide the final answer. "
+    "The reasoning process MUST BE enclosed within <think> </think> tags, and the answer process MUST BE enclosed within <answer> </answer> tags. "
+    "The final answer MUST BE put in \\boxed{} in <answer> </answer> tags."
+)
+
+ds_collections = {
+    "MMMU_test": {
+        "root": "MMMU/MMMU_Pro",
+        "config": "standard (4 options)",
+        "max_new_tokens": 4096,
+        "min_new_tokens": 1,
+        "split": "test"
+    },
+}
+
+
+def parse_options(raw_options):
+    if isinstance(raw_options, list):
+        return raw_options
+    if isinstance(raw_options, str):
+        try:
+            parsed = ast.literal_eval(raw_options)
+            if isinstance(parsed, list):
+                return [str(item) for item in parsed]
+        except Exception:
+            pass
+    return [str(raw_options)]
+
+
+def format_question(question, options):
+    choice_lines = [f"{chr(ord('A') + idx)}. {choice}" for idx, choice in enumerate(options)]
+    return f"{question}\nChoices:\n" + "\n".join(choice_lines)
+
+
+def build_content(data_item):
+    options = parse_options(data_item["options"])
+    content = []
+    for idx in range(1, 8):
+        image = data_item.get(f"image_{idx}")
+        if image is not None:
+            content.append({
+                "type": "image",
+                "image": image
+            })
+    content.append({
+        "type": "text",
+        "text": format_question(data_item["question"], options) + " " + SYSTEM_PROMPT,
+    })
+    return content, options
+
+
+def evaluate_chat_model(args):
+    random.seed(args.seed)
+
+    for ds_name in args.datasets:
+        data = load_dataset(
+            ds_collections[ds_name]["root"],
+            ds_collections[ds_name]["config"]
+        )[ds_collections[ds_name]["split"]]
+
+        inputs = []
+        parsed_options_map = {}
+        for idx, data_item in tqdm(enumerate(data)):
+            content, parsed_options = build_content(data_item)
+            parsed_options_map[data_item["id"]] = parsed_options
+            messages = [
+                {
+                    "role": "user",
+                    "content": content,
+                }
+            ]
+            prompt = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+            image_data, _ = process_vision_info(messages)
+
+            inputs.append({
+                "prompt": prompt,
+                "multi_modal_data": {
+                    "image": image_data
+                },
+            })
+
+        sampling_params = SamplingParams(
+            temperature=0.0,
+            top_k=1,
+            n=1,
+            max_tokens=4096,
+            skip_special_tokens=False,
+        )
+        model_outputs = llm.generate(inputs, sampling_params=sampling_params)
+        outputs = []
+        for data_item, model_output in zip(data, model_outputs):
+            for idx in range(1, 8):
+                data_item.pop(f"image_{idx}", None)
+            data_item["parsed_options"] = parsed_options_map[data_item["id"]]
+            data_item["response"] = model_output.outputs[0].text
+            outputs.append(data_item)
+
+        print(f"Evaluating {ds_name} ...")
+        results_file = args.filename
+        output_path = os.path.join(args.out_dir, results_file)
+        json.dump(outputs, open(output_path, "w", encoding="utf-8"), indent=4, ensure_ascii=False)
+        print("Results saved to {}".format(output_path))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--checkpoint", type=str, default="")
+    parser.add_argument("--datasets", type=str, default="MMMU_test")
+    parser.add_argument("--tensor-parallel-size", type=int, default=1)
+    parser.add_argument("--out-dir", type=str, default="results")
+    parser.add_argument("--filename", type=str, default="mmmu.json")
+    parser.add_argument("--seed", type=int, default=0)
+    args = parser.parse_args()
+
+    if not os.path.exists(args.out_dir):
+        os.makedirs(args.out_dir)
+
+    args.datasets = args.datasets.split(",")
+    print("datasets:", args.datasets)
+
+    llm = LLM(
+        model=args.checkpoint,
+        trust_remote_code=True,
+        tensor_parallel_size=args.tensor_parallel_size,
+        limit_mm_per_prompt={"image": 7},
+        gpu_memory_utilization=0.85,
+        enable_prefix_caching=True,
+        max_num_seqs=512,
+        max_model_len=20000,
+    )
+    processor = Qwen2_5_VLProcessor.from_pretrained(args.checkpoint, trust_remote_code=True)
+    stop_token_ids = None
+
+    evaluate_chat_model(args)
