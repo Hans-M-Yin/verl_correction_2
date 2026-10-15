@@ -1,152 +1,195 @@
-import os
+"""
+perception/evaluation/summary.py
+----------------------------------
+Reads judge result JSON files and prints a Markdown table.
+
+Covers: mathvista, mathverse, mathvision, wemath  (the original 4 math benchmarks).
+
+Judge file name conventions (mirrors evaluation_all.py):
+  mathvista  → <dir>/mathvista-qwen_judge_results_v4.json
+  mathverse  → <dir>/mathverse_test-judge_v4.json
+  mathvision → <dir>/mathvision_test.json-qwen_judge_results_v4.json
+  wemath     → <dir>/wemath_test-qwen_judge_results_v4.json
+
+Usage
+-----
+  # Scan every sub-directory of a root folder (one row each):
+  python summary.py /path/to/results_root
+
+  # Explicit directories:
+  python summary.py --eval_dirs ckpt_step200 ckpt_step400
+"""
+
+from __future__ import annotations
+
+import argparse
 import json
-import csv
+import os
+from typing import Dict, Optional
 
-def main():
-    # 设定 eval_results 目录的绝对路径
-    base_dir = '/mnt/hdfs/byte_ai_sales/user/user/yinzhihan/verl/perception/evaluation/eval_results'
-    if not os.path.exists(base_dir):
-        print(f"目录不存在: {base_dir}")
-        return
 
-    results = []
-    
-    # 遍历所有实验文件夹
-    for exp_folder in os.listdir(base_dir):
-        exp_path = os.path.join(base_dir, exp_folder)
-        if not os.path.isdir(exp_path):
-            continue
-            
-        # 提取实验名称和 step (格式形如 exp_name_global_step_128)
-        if '_global_step_' in exp_folder:
-            parts = exp_folder.rsplit('_global_step_', 1)
-            exp_name = parts[0]
-            step = parts[1]
-        else:
-            exp_name = exp_folder
-            step = 'unknown'
-            
-        benchmarks = {}
-        
-        # 遍历文件夹内的 JSON 文件
-        for filename in os.listdir(exp_path):
-            if not filename.endswith('.json'):
-                continue
-            # 我们只处理包含了 "judge" 字样的结果文件
-            if 'judge' not in filename.lower():
-                continue
-                
-            file_path = os.path.join(exp_path, filename)
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    
-                # 确认文件内容是列表
-                if not isinstance(data, list):
-                    continue
-                    
-                total = len(data)
-                if total == 0:
-                    continue
-                    
-                # 手动计算 Acc
-                correct = 0
-                for item in data:
-                    judge_val = item.get('judge_result', '')
-                    # 兼容布尔值与字符串的 true
-                    if str(judge_val).lower() == 'true':
-                        correct += 1
-                        
-                acc = correct / total
-                
-                # 从文件名判断 benchmark 名称
-                lower_filename = filename.lower()
-                if 'mathvista' in lower_filename:
-                    b_name = 'MathVista'
-                elif 'mathverse' in lower_filename:
-                    b_name = 'MathVerse'
-                elif 'mathvision' in lower_filename:
-                    b_name = 'MathVision'
-                elif 'wemath' in lower_filename:
-                    b_name = 'WeMath'
-                else:
-                    # 对于未知的 benchmark 使用文件名作为标题
-                    b_name = filename.split('.')[0]
-                    
-                benchmarks[b_name] = acc
-            except Exception as e:
-                print(f"解析文件 {file_path} 时出错: {e}")
-                
-        # 只要存在至少一个 benchmark 的结果，就加入到总结果列表中
-        if benchmarks:
-            row = {'Experiment': exp_name, 'Step': step}
-            row.update(benchmarks)
-            results.append(row)
-            
-    if not results:
-        print("没有找到任何包含评测结果的 judge 文件。")
-        return
-        
-    # 获取所有唯一的 benchmark 名称，并排序
-    all_benchmarks = set()
-    for row in results:
-        for k in row.keys():
-            if k not in ['Experiment', 'Step']:
-                all_benchmarks.add(k)
-    all_benchmarks = sorted(list(all_benchmarks))
-    
-    # 对结果进行排序 (优先按照 Experiment 名称，其次按照 Step 升序)
-    def sort_key(x):
-        try:
-            step_val = int(x['Step'])
-        except ValueError:
-            step_val = -1
-        return (x['Experiment'], step_val)
-        
-    results.sort(key=sort_key)
-    
-    # ---------------- 打印在终端的可视化表格 ----------------
-    headers = ['Experiment', 'Step'] + all_benchmarks
-    # 动态构建列宽格式
-    header_format = "{:<45} | {:<8} | " + " | ".join([f"{{:<{max(len(b), 8)}}}" for b in all_benchmarks])
-    
-    sep_line = "-" * (45 + 8 + 3 * 2 + sum(max(len(b), 8) + 3 for b in all_benchmarks))
-    print(sep_line)
-    print(header_format.format(*headers))
-    print(sep_line)
-    
-    for row in results:
-        values = [row['Experiment'], row['Step']]
-        for b in all_benchmarks:
-            val = row.get(b, '-')
-            if isinstance(val, float):
-                # 以百分比显示
-                values.append(f"{val:.2%}")
-            else:
-                values.append(val)
-        print(header_format.format(*values))
-        
-    print(sep_line)
-    
-    # ---------------- 将结果保存为 CSV 文件 ----------------
-    output_csv = '/mnt/hdfs/byte_ai_sales/user/user/yinzhihan/verl/perception/evaluation/evaluation_summary.csv'
+# ---------------------------------------------------------------------------
+# Judge file mapping – must mirror evaluation_all.py naming
+# ---------------------------------------------------------------------------
+
+_JUDGE_FILES: Dict[str, str] = {
+    "mathvista":  "mathvista.json-qwen_judge_results_v4.json",
+    "mathverse":  "mathverse_test-judge_v4.json",
+    "mathvision": "mathvision_test.json-qwen_judge_results_v4.json",
+    "wemath":     "wemath_test-qwen_judge_results_v4.json",
+}
+
+_DISPLAY_COLUMNS = ["mathvista", "mathverse", "mathvision", "wemath"]
+
+
+# ---------------------------------------------------------------------------
+# Core helpers
+# ---------------------------------------------------------------------------
+
+def _read_judge_accuracy(filepath: str) -> Optional[float]:
+    """Return fraction of 'true' judgements, or None if file is missing."""
+    if not os.path.isfile(filepath):
+        return None
     try:
-        with open(output_csv, 'w', newline='', encoding='utf-8') as f:
-            writer = csv.DictWriter(f, fieldnames=headers)
-            writer.writeheader()
-            for row in results:
-                csv_row = {'Experiment': row['Experiment'], 'Step': row['Step']}
-                for b in all_benchmarks:
-                    val = row.get(b, '')
-                    if isinstance(val, float):
-                        # CSV 里存小数格式（保留4位小数）
-                        csv_row[b] = f"{val:.4f}"
-                    else:
-                        csv_row[b] = val
-                writer.writerow(csv_row)
-        print(f"\n✅ 汇总记录表格已成功保存至: {output_csv}")
-    except Exception as e:
-        print(f"保存 CSV 文件时出错: {e}")
+        with open(filepath, "r", encoding="utf-8") as f:
+            records = json.load(f)
+        if not records:
+            return None
+        items = list(records.values()) if isinstance(records, dict) else records
+        num_correct = sum(
+            1 for item in items
+            if str(item.get("judge_result", "")).strip().lower() == "true"
+        )
+        return num_correct / len(items)
+    except Exception as exc:
+        print(f"  [WARN] Could not read {filepath}: {exc}")
+        return None
 
-if __name__ == '__main__':
+
+def _eval_dir_results(eval_dir: str) -> Dict[str, Optional[float]]:
+    raw: Dict[str, Optional[float]] = {}
+    for bench, filename in _JUDGE_FILES.items():
+        raw[bench] = _read_judge_accuracy(os.path.join(eval_dir, filename))
+    return raw
+
+
+# ---------------------------------------------------------------------------
+# Formatting
+# ---------------------------------------------------------------------------
+
+def _fmt(value: Optional[float]) -> str:
+    return "–" if value is None else f"{value * 100:.1f}"
+
+
+def _print_markdown_table(rows: list[dict]) -> None:
+    headers = ["Model / Checkpoint"] + _DISPLAY_COLUMNS
+    col_widths = {h: len(h) for h in headers}
+    for row in rows:
+        col_widths["Model / Checkpoint"] = max(
+            col_widths["Model / Checkpoint"], len(row["label"])
+        )
+        for col in _DISPLAY_COLUMNS:
+            col_widths[col] = max(col_widths[col], len(_fmt(row.get(col))))
+
+    def _pad(text: str, key: str) -> str:
+        return text.ljust(col_widths[key])
+
+    header_row = " | ".join(_pad(h, h) for h in headers)
+    sep_row    = " | ".join("-" * col_widths[h] for h in headers)
+    print(f"| {header_row} |")
+    print(f"| {sep_row} |")
+    for row in rows:
+        cells = [_pad(row["label"], "Model / Checkpoint")]
+        for col in _DISPLAY_COLUMNS:
+            cells.append(_pad(_fmt(row.get(col)), col))
+        print("| " + " | ".join(cells) + " |")
+
+
+def _print_detail(eval_dir: str, raw: Dict[str, Optional[float]]) -> None:
+    print(f"\n=== Detail: {eval_dir} ===")
+    for bench, filename in _JUDGE_FILES.items():
+        val = raw.get(bench)
+        tag = f"{val * 100:.2f}%" if val is not None else "NOT FOUND"
+        print(f"  {bench:<12} {tag}  ({filename})")
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Summarise math benchmark results (mathvista/verse/vision/wemath)."
+    )
+    parser.add_argument(
+        "eval_root",
+        nargs="?",
+        default=None,
+        metavar="ROOT_DIR",
+        help="Parent directory; each immediate sub-directory becomes one table row.",
+    )
+    parser.add_argument(
+        "--eval_dirs",
+        nargs="+",
+        default=None,
+        metavar="DIR",
+        help="Explicitly list eval directories (alternative to ROOT_DIR).",
+    )
+    parser.add_argument(
+        "--row_labels",
+        nargs="*",
+        default=None,
+        metavar="LABEL",
+        help="Optional display labels matching --eval_dirs order.",
+    )
+    parser.add_argument(
+        "--detail",
+        action="store_true",
+        help="Print per-file breakdown for each directory.",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+
+    if args.eval_root and args.eval_dirs:
+        raise ValueError("Specify either a positional ROOT_DIR or --eval_dirs, not both.")
+
+    if args.eval_root:
+        root = args.eval_root
+        if not os.path.isdir(root):
+            raise FileNotFoundError(f"Root directory not found: {root}")
+        subdirs = sorted(d for d in os.listdir(root) if os.path.isdir(os.path.join(root, d)))
+        if not subdirs:
+            print(f"[WARN] No sub-directories found in {root}")
+            return
+        eval_pairs = [(os.path.join(root, d), d) for d in subdirs]
+    elif args.eval_dirs:
+        labels = args.row_labels or [os.path.basename(os.path.abspath(d)) for d in args.eval_dirs]
+        if len(labels) != len(args.eval_dirs):
+            raise ValueError("--row_labels count must match --eval_dirs count.")
+        eval_pairs = list(zip(args.eval_dirs, labels))
+    else:
+        raise ValueError("Provide either a positional ROOT_DIR or --eval_dirs.")
+
+    table_rows = []
+    for eval_dir, label in eval_pairs:
+        if not os.path.isdir(eval_dir):
+            print(f"[WARN] Directory not found, skipping: {eval_dir}")
+            continue
+        raw = _eval_dir_results(eval_dir)
+        if args.detail:
+            _print_detail(eval_dir, raw)
+        row = {"label": label, **raw}
+        table_rows.append(row)
+
+    print("\n### Math Benchmark Summary (accuracy in %)\n")
+    if table_rows:
+        _print_markdown_table(table_rows)
+    else:
+        print("(no results found)")
+
+
+if __name__ == "__main__":
     main()

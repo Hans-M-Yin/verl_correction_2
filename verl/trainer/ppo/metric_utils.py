@@ -258,13 +258,17 @@ def compute_timing_metrics(batch: DataProto, timing_raw: dict[str, float]) -> di
         **{name: num_overall_tokens for name in ["ref", "values", "adv", "update_critic", "update_actor"]},
     }
 
-    return {
+    metrics = {
         **{f"timing_s/{name}": value for name, value in timing_raw.items()},
         **{
             f"timing_per_token_ms/{name}": timing_raw[name] * 1000 / num_tokens_of_section[name]
             for name in set(num_tokens_of_section.keys()) & set(timing_raw.keys())
         },
     }
+    # Step-level optimisation wall time.  Retain the actor/critic components
+    # above, as GRPO normally has no critic update.
+    metrics["timing_s/update"] = timing_raw.get("update_actor", 0.0) + timing_raw.get("update_critic", 0.0)
+    return metrics
 
 
 def compute_throughout_metrics(batch: DataProto, timing_raw: dict[str, float], n_gpus: int) -> dict[str, Any]:

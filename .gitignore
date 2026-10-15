@@ -141,3 +141,9 @@ checkpoints
 merged_checkpoints
 perception/evaluation/eval_results
 _preprocessed_dataset
+
+# Local checkpoint archive mapping and upload state (contains experiment names).
+.checkpoint_archive/
+
+# Local dataset archive upload state and source mapping.
+.dataset_archive/

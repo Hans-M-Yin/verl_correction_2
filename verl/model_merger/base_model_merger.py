@@ -293,7 +293,8 @@ class BaseModelMerger(ABC):
         auto_model_class = self.get_transformers_auto_model_class()
         with init_empty_weights():
             model = auto_model_class.from_config(
-                self.model_config, torch_dtype=torch.bfloat16, trust_remote_code=self.config.trust_remote_code
+                # self.model_config, torch_dtype=torch.bfloat16, trust_remote_code=self.config.trust_remote_code
+                self.model_config
             )
         model.to_empty(device="cpu")
         model = self.patch_model_generation_config(model)

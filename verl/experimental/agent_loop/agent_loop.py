@@ -16,6 +16,7 @@ import heapq
 import logging
 import os
 import random
+import time
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 from uuid import uuid4
@@ -126,6 +127,12 @@ class AgentLoopMetrics(BaseModel):
 
     generate_sequences: float = 0.0
     tool_calls: float = 0.0
+    # End-to-end per-rollout reward wait time, plus the split measured inside
+    # the custom reward function.
+    reward_compute: float = 0.0
+    correction_reward: float = 0.0
+    other_reward: float = 0.0
+    correction_reward_eligible: int = 0
 
 
 class AgentLoopOutput(BaseModel):
@@ -408,20 +415,20 @@ class AgentLoopBase(ABC):
             else:
                 video_metadatas = None
 
-            # model_inputs = self.processor(
-            #     text=[raw_prompt],
-            #     images=images,
-            #     videos=videos,
-            #     video_metadatas=video_metadatas,
-            #     return_tensors="pt",
-            #     do_sample_frames=False,
-            # )
-            # _prompt_ids = model_inputs.pop("input_ids")
-            _input_ids = self.fast_mm_tokenize_from_images(
-                texts=[raw_prompt],
+            model_inputs = self.processor(
+                text=[raw_prompt],
                 images=images,
-                tokenizer=self.processor.tokenizer,
+                videos=videos,
+                video_metadatas=video_metadatas,
+                return_tensors="pt",
+                do_sample_frames=False,
             )
+            _input_ids = model_inputs.pop("input_ids")
+            # _input_ids = self.fast_mm_tokenize_from_images(
+            #     texts=[raw_prompt],
+            #     images=images,
+            #     tokenizer=self.processor.tokenizer,
+            # )
             prompt_ids = _input_ids.squeeze(0).tolist()
             # print(torch.equal(_input_ids, model_inputs.pop("input_ids")), " | ")
         else:
@@ -648,6 +655,8 @@ class AgentLoopWorker:
                 dataset_config=self.config.data,
             )
             output: AgentLoopOutput = await agent_loop.run(sampling_params, **kwargs)
+            # Preserve the sample-level rollout time in rollout dumps.
+            output.extra_fields["rollout_time_s"] = output.metrics.generate_sequences
             return await self._agent_loop_postprocess(output, **kwargs)
 
     async def _agent_loop_postprocess(self, output, **kwargs) -> _InternalAgentLoopOutput:
@@ -791,6 +800,17 @@ class AgentLoopWorker:
         else:
             video_metadatas = None
         current_text = self.tokenizer.decode(input_ids.squeeze(0), skip_special_tokens=True)
+        # Qwen2-VL images in our preprocessed datasets are already aligned to
+        # its visual patch grid, so preserving the original resolution keeps
+        # the existing Qwen2 behavior unchanged.  Qwen3-VL uses a different
+        # patch size/grid and its fast image processor requires smart-resizing
+        # for arbitrary image sizes (e.g. 196x84).  Forcing do_resize=False on
+        # Qwen3-VL makes its internal patch view invalid.
+        processor_name = type(self.processor).__name__.lower()
+        processor_kwargs = {}
+        if "qwen3vl" not in processor_name:
+            processor_kwargs["images_kwargs"] = {"do_resize": False}
+
         multi_modal_inputs = self.processor(
             text=[current_text],
             images=images,
@@ -798,8 +818,7 @@ class AgentLoopWorker:
             video_metadatas=video_metadatas,
             return_tensors="pt",
             do_sample_frames=False,
-            images_kwargs={"do_resize": False},
-
+            **processor_kwargs,
         )
         multi_modal_inputs.pop("input_ids", None)
         multi_modal_inputs.pop("attention_mask", None)
@@ -866,9 +885,17 @@ class AgentLoopWorker:
                 non_tensor_batch=non_tensor_batch,
             )
             # logger.warning("@@@@@@@@@@2 这里应该走过了才对啊 @@@@@@@@@@@@@@@@")
+            reward_start_time = time.perf_counter()
             result = await self.reward_loop_worker.compute_score.remote(data)
+            output.metrics.reward_compute = time.perf_counter() - reward_start_time
             output.reward_score = result["reward_score"]
             output.extra_fields["reward_extra_info"] = result["reward_extra_info"]
+            reward_extra_info = result["reward_extra_info"]
+            output.metrics.correction_reward = float(reward_extra_info.get("correction_reward_time_s", 0.0))
+            output.metrics.other_reward = float(reward_extra_info.get("other_reward_time_s", 0.0))
+            output.metrics.correction_reward_eligible = int(
+                reward_extra_info.get("correction_reward_eligible", 0)
+            )
 
     def _postprocess(self, inputs: list[_InternalAgentLoopOutput]) -> DataProto:
         """Process the padded outputs from _run_agent_loop and combine them into a batch."""
@@ -1121,6 +1148,37 @@ class AgentLoopManager:
         timing["agent_loop/slowest/tool_calls"] = t_tool_calls[slowest]
         timing["agent_loop/slowest/prompt_length"] = attention_mask[:prompt_length].sum().item()
         timing["agent_loop/slowest/response_length"] = attention_mask[prompt_length:].sum().item()
+
+        # Reward requests run concurrently in async agent-loop mode.  Sum
+        # fields are cumulative sample cost; the critical-path proxy is the
+        # longest individual request.  The conditional average deliberately
+        # excludes ordinary rollouts that did not enter correction reward.
+        t_reward_compute = np.array([metric.get("reward_compute", 0.0) for chunk in metrics for metric in chunk])
+        t_other_reward = np.array([metric.get("other_reward", 0.0) for chunk in metrics for metric in chunk])
+        t_correction_reward = np.array(
+            [metric.get("correction_reward", 0.0) for chunk in metrics for metric in chunk]
+        )
+        correction_eligible = np.array(
+            [metric.get("correction_reward_eligible", 0) for chunk in metrics for metric in chunk], dtype=np.int64
+        )
+        num_rollouts = len(t_correction_reward)
+        num_eligible = int(correction_eligible.sum())
+        correction_time_sum = float(t_correction_reward.sum())
+        timing["agent_loop/reward/compute_per_rollout_mean_s"] = float(t_reward_compute.mean())
+        timing["agent_loop/reward/critical_path_proxy_s"] = float(t_reward_compute.max())
+        timing["agent_loop/reward/other_per_rollout_mean_s"] = float(t_other_reward.mean())
+        timing["agent_loop/correction/eligible_rollouts"] = num_eligible
+        timing["agent_loop/correction/eligible_fraction"] = num_eligible / num_rollouts if num_rollouts else 0.0
+        timing["agent_loop/correction/time_sum_s"] = correction_time_sum
+        timing["agent_loop/correction/time_per_all_rollout_s"] = (
+            correction_time_sum / num_rollouts if num_rollouts else 0.0
+        )
+        # NaN prevents batches without augmented samples being counted as
+        # zero-cost correction calls by W&B aggregate views.
+        timing["agent_loop/correction/time_per_augmented_rollout_s"] = (
+            correction_time_sum / num_eligible if num_eligible else float("nan")
+        )
+        timing["agent_loop/correction/critical_path_proxy_s"] = float(t_correction_reward.max())
 
         return timing
 

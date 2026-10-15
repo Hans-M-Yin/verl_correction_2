@@ -22,10 +22,88 @@ import torch
 from transformers.models.qwen3_vl.modeling_qwen3_vl import (
     Qwen3VLCausalLMOutputWithPast,
     Qwen3VLForConditionalGeneration,
+    Qwen3VLVisionModel,
 )
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
+
+
+def _patch_qwen3_vl_vision_pos_embed_device() -> None:
+    """Keep Qwen3-VL vision position-embedding indices on the active device.
+
+    transformers 4.57 creates the index tensor in
+    ``fast_pos_embed_interpolate`` from ``self.pos_embed.weight.device``.
+    Under FSDP2's standalone reference policy that parameter can transiently
+    report CPU even though FSDP has materialized the embedding weight on CUDA;
+    ``F.embedding`` then receives a CPU index for a CUDA weight.  In this
+    project, ``grid_thw`` is explicitly moved to the vision tower device just
+    before the call, so it is the reliable device source.
+    """
+    if getattr(Qwen3VLVisionModel, "_verl_pos_embed_device_patched", False):
+        return
+
+    original_forward = Qwen3VLVisionModel.fast_pos_embed_interpolate
+
+    @functools.wraps(original_forward)
+    def patched_fast_pos_embed_interpolate(self, grid_thw: torch.Tensor) -> torch.Tensor:
+        grid_ts, grid_hs, grid_ws = grid_thw[:, 0], grid_thw[:, 1], grid_thw[:, 2]
+        idx_list = [[] for _ in range(4)]
+        weight_list = [[] for _ in range(4)]
+
+        for t, h, w in zip(grid_ts, grid_hs, grid_ws, strict=False):
+            h_idxs = torch.linspace(0, self.num_grid_per_side - 1, h)
+            w_idxs = torch.linspace(0, self.num_grid_per_side - 1, w)
+            h_idxs_floor = h_idxs.int()
+            w_idxs_floor = w_idxs.int()
+            h_idxs_ceil = (h_idxs.int() + 1).clip(max=self.num_grid_per_side - 1)
+            w_idxs_ceil = (w_idxs.int() + 1).clip(max=self.num_grid_per_side - 1)
+            dh = h_idxs - h_idxs_floor
+            dw = w_idxs - w_idxs_floor
+            base_h = h_idxs_floor * self.num_grid_per_side
+            base_h_ceil = h_idxs_ceil * self.num_grid_per_side
+            indices = [
+                (base_h[None].T + w_idxs_floor[None]).flatten(),
+                (base_h[None].T + w_idxs_ceil[None]).flatten(),
+                (base_h_ceil[None].T + w_idxs_floor[None]).flatten(),
+                (base_h_ceil[None].T + w_idxs_ceil[None]).flatten(),
+            ]
+            weights = [
+                ((1 - dh)[None].T * (1 - dw)[None]).flatten(),
+                ((1 - dh)[None].T * dw[None]).flatten(),
+                (dh[None].T * (1 - dw)[None]).flatten(),
+                (dh[None].T * dw[None]).flatten(),
+            ]
+            for i in range(4):
+                idx_list[i].extend(indices[i].tolist())
+                weight_list[i].extend(weights[i].tolist())
+
+        # Deliberately use grid_thw.device rather than pos_embed.weight.device;
+        # the latter is stale (CPU) in the affected FSDP2 reference path.
+        idx_tensor = torch.tensor(idx_list, dtype=torch.long, device=grid_thw.device)
+        weight_tensor = torch.tensor(weight_list, dtype=self.pos_embed.weight.dtype, device=grid_thw.device)
+        pos_embeds = self.pos_embed(idx_tensor) * weight_tensor[:, :, None]
+        patch_pos_embeds = pos_embeds.sum(dim=0)
+        patch_pos_embeds = patch_pos_embeds.split([h * w for h, w in zip(grid_hs, grid_ws, strict=False)])
+
+        patch_pos_embeds_permute = []
+        merge_size = self.config.spatial_merge_size
+        for pos_embed, t, h, w in zip(patch_pos_embeds, grid_ts, grid_hs, grid_ws, strict=False):
+            pos_embed = pos_embed.repeat(t, 1)
+            pos_embed = (
+                pos_embed.view(t, h // merge_size, merge_size, w // merge_size, merge_size, -1)
+                .permute(0, 1, 3, 2, 4, 5)
+                .flatten(0, 4)
+            )
+            patch_pos_embeds_permute.append(pos_embed)
+        return torch.cat(patch_pos_embeds_permute)
+
+    Qwen3VLVisionModel.fast_pos_embed_interpolate = patched_fast_pos_embed_interpolate
+    Qwen3VLVisionModel._verl_pos_embed_device_patched = True
+    logger.info("Patched Qwen3VLVisionModel.fast_pos_embed_interpolate for FSDP2 device consistency")
+
+
+_patch_qwen3_vl_vision_pos_embed_device()
 
 
 def get_rope_index(
@@ -146,7 +224,14 @@ def _get_input_embeds(
     inputs_embeds = model.get_input_embeddings()(input_ids)
     image_mask, video_mask = None, None
     if pixel_values is not None:
-        pixel_values = pixel_values.type(model.visual.dtype)
+        # ``image_grid_thw`` is produced by the processor on CPU in some FSDP
+        # paths, whereas the vision tower has already been placed on the local
+        # CUDA device.  Qwen3-VL uses grid_thw to index its positional-embedding
+        # table, so pixel values and grid metadata must be moved together.
+        vision_device = next(model.visual.parameters()).device
+        pixel_values = pixel_values.to(device=vision_device, dtype=model.visual.dtype)
+        if image_grid_thw is not None:
+            image_grid_thw = image_grid_thw.to(device=vision_device)
         image_embeds, deepstack_image_embeds = model.visual(pixel_values, grid_thw=image_grid_thw)
         n_image_tokens = (input_ids == model.config.image_token_id).sum().item()
         n_image_features = image_embeds.shape[0]
@@ -164,7 +249,10 @@ def _get_input_embeds(
         inputs_embeds = inputs_embeds.masked_scatter(image_mask, image_embeds)
 
     if pixel_values_videos is not None:
-        pixel_values_videos = pixel_values_videos.type(model.visual.dtype)
+        vision_device = next(model.visual.parameters()).device
+        pixel_values_videos = pixel_values_videos.to(device=vision_device, dtype=model.visual.dtype)
+        if video_grid_thw is not None:
+            video_grid_thw = video_grid_thw.to(device=vision_device)
         video_embeds, deepstack_video_embeds = model.visual(pixel_values_videos, grid_thw=video_grid_thw)
         n_video_tokens = (input_ids == model.config.video_token_id).sum().item()
         n_video_features = video_embeds.shape[0]

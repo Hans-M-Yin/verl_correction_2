@@ -27,19 +27,21 @@ from __future__ import annotations
 
 import argparse
 import ast
+import glob
 import json
 import os
 import random
+import re
 import time
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, List, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 import tqdm
 from codetiming import Timer
 from datasets import Image, load_dataset
 from openai import OpenAI
 from qwen_vl_utils import process_vision_info
-from transformers import Qwen2_5_VLProcessor
+from transformers import AutoProcessor
 from vllm import LLM, SamplingParams
 
 import judge_freak
@@ -177,6 +179,23 @@ def _sanitize_mmmu_record(data_item: dict) -> dict:
     return record
 
 
+def _build_mmmu_vision_messages(data_item: dict) -> List[dict]:
+    parsed_options = _parse_options(data_item["options"])
+    text_prompt = "Choices:\n" + _format_mcq_choices(parsed_options)
+    content = [
+        {"type": "image", "image": data_item["image"]},
+        {"type": "text", "text": text_prompt + " " + SYSTEM_PROMPT}
+    ]
+    return [{"role": "user", "content": content}]
+
+
+def _sanitize_mmmu_vision_record(data_item: dict) -> dict:
+    record = dict(data_item)
+    record["parsed_options"] = _parse_options(data_item["options"])
+    record.pop("image", None)
+    return record
+
+
 def _build_logicvista_messages(data_item: dict) -> List[dict]:
     return [
         {
@@ -235,6 +254,73 @@ def _sanitize_freak_record(data_item: dict) -> dict:
     return record
 
 
+def _build_mmstar_messages(data_item: dict) -> List[dict]:
+    """MMStar stores its choices directly in ``question``."""
+    return [
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": data_item["image"]},
+                {
+                    "type": "text",
+                    "text": data_item["question"] + " " + SYSTEM_PROMPT,
+                },
+            ],
+        }
+    ]
+
+
+def _sanitize_mmstar_record(data_item: dict) -> dict:
+    record = dict(data_item)
+    record.pop("image", None)
+    return record
+
+
+def _build_pope_messages(data_item: dict) -> List[dict]:
+    # Official POPE uses ``text``; lmms-lab's faithful HF formatting uses
+    # ``question``.  Support both without changing the evaluation protocol.
+    question = str(data_item.get("text", data_item.get("question", ""))).strip()
+    return [
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": data_item["image"]},
+                {
+                    "type": "text",
+                    "text": question + " Answer Yes or No only. " + HALLUSION_SYSTEM_PROMPT,
+                },
+            ],
+        }
+    ]
+
+
+def _sanitize_pope_record(data_item: dict) -> dict:
+    record = dict(data_item)
+    record.pop("image", None)
+    return record
+
+
+def _build_vstar_messages(data_item: dict) -> List[dict]:
+    question = data_item["question"]
+    if data_item.get("options"):
+        question = question + "\nChoices:\n" + _format_mcq_choices(data_item["options"])
+    return [
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": data_item["image"]},
+                {"type": "text", "text": question + " " + SYSTEM_PROMPT},
+            ],
+        }
+    ]
+
+
+def _sanitize_vstar_record(data_item: dict) -> dict:
+    record = dict(data_item)
+    record.pop("image", None)
+    return record
+
+
 def _build_wemath_messages(data_item: dict) -> List[dict]:
     query = data_item["question"] + "\nChoices:\n" + data_item["option"]
     return [
@@ -284,6 +370,319 @@ def _mathvision_judge_output_path(result_filepath: str) -> str:
     return os.path.join(dirname, f"{filename}-qwen_judge_results_v4.json")
 
 
+def _load_pope_dataset(args: argparse.Namespace) -> List[dict]:
+    """Load the three official MSCOCO POPE splits from a local POPE checkout.
+
+    The official repository distributes annotation jsonl files separately from
+    COCO images.  Keeping both locations explicit prevents accidental use of a
+    third-party reformat with a different protocol.
+    """
+    requested_splits = _parse_pope_splits(args.pope_splits)
+    if not args.pope_annotation_dir and not args.pope_image_dir:
+        # This is the lmms-eval formatting of the original POPE benchmark. It
+        # includes images, so it needs neither a separate COCO download nor a
+        # preprocessing step.
+        dataset = load_dataset("lmms-lab/POPE", "default")["test"]
+        dataset = dataset.cast_column("image", Image(decode=True))
+        return [
+            {
+                **dict(item),
+                "text": item["question"],
+                "label": str(item["answer"]).strip().lower(),
+                "pope_split": item["category"],
+            }
+            for item in dataset
+            if str(item["category"]).strip().lower() in requested_splits
+        ]
+    if not args.pope_annotation_dir or not args.pope_image_dir:
+        raise ValueError(
+            "Set both --pope-annotation-dir and --pope-image-dir, or omit both to load lmms-lab/POPE directly."
+        )
+
+    records: List[dict] = []
+    for split_name in ("random", "popular", "adversarial"):
+        if split_name not in requested_splits:
+            continue
+        candidates = [
+            os.path.join(args.pope_annotation_dir, f"coco_pope_{split_name}.json"),
+            os.path.join(args.pope_annotation_dir, f"coco_pope_{split_name}.jsonl"),
+            os.path.join(args.pope_annotation_dir, f"pope_{split_name}.json"),
+            os.path.join(args.pope_annotation_dir, f"pope_{split_name}.jsonl"),
+        ]
+        annotation_path = next((path for path in candidates if os.path.isfile(path)), None)
+        if annotation_path is None:
+            raise FileNotFoundError(
+                f"Could not find the official POPE {split_name} annotation in {args.pope_annotation_dir}."
+            )
+        with open(annotation_path, "r", encoding="utf-8") as f:
+            for line_number, line in enumerate(f, start=1):
+                if not line.strip():
+                    continue
+                item = json.loads(line)
+                image_name = item.get("image")
+                if not image_name:
+                    raise ValueError(f"Missing `image` in {annotation_path}:{line_number}")
+                image_path = image_name if os.path.isabs(image_name) else os.path.join(args.pope_image_dir, image_name)
+                if not os.path.isfile(image_path):
+                    raise FileNotFoundError(f"POPE image not found: {image_path}")
+                label = str(item.get("label", "")).strip().lower()
+                if label not in {"yes", "no"}:
+                    raise ValueError(f"Unexpected POPE label {label!r} in {annotation_path}:{line_number}")
+                records.append({
+                    **item,
+                    "id": item.get("question_id", f"{split_name}-{line_number}"),
+                    "image": image_path,
+                    "label": label,
+                    "pope_split": split_name,
+                })
+    return records
+
+
+def _parse_pope_splits(raw_splits: str) -> set[str]:
+    valid_splits = {"random", "popular", "adversarial"}
+    requested_splits = {item.strip().lower() for item in raw_splits.split(",") if item.strip()}
+    if not requested_splits:
+        raise ValueError("--pope-splits must contain at least one split.")
+    unknown_splits = requested_splits - valid_splits
+    if unknown_splits:
+        raise ValueError(f"Unknown POPE split(s): {sorted(unknown_splits)}. Supported: {sorted(valid_splits)}")
+    return requested_splits
+
+
+def _load_vstar_dataset(args: argparse.Namespace) -> List[dict]:
+    """Load V*Bench from the official repository layout.
+
+    Each annotation JSON lives beside its image; option 0 is the official
+    correct option.  The loader intentionally discovers every subtask folder
+    rather than relying on private filenames from a particular checkout.
+    """
+    if not args.vstar_data_dir:
+        raise ValueError("V*Bench requires --vstar-data-dir pointing to the official benchmark folder.")
+    root_dir = os.path.abspath(args.vstar_data_dir)
+    manifest_path = os.path.join(root_dir, "test_questions.jsonl")
+    records: List[dict] = []
+
+    # The current HF release exposes a top-level 191-item manifest. Prefer it
+    # because it retains official answer labels and defines the official V*
+    # test set (direct_attributes and relative_position); auxiliary folders
+    # such as OCR and GPT4V-hard are intentionally not mixed into its score.
+    if os.path.isfile(manifest_path):
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            for line_number, line in enumerate(f, start=1):
+                if not line.strip():
+                    continue
+                item = json.loads(line)
+                # craigwu/vstar_bench uses ``text``; older manifests use
+                # ``question`` or ``query``.  The supplied text already
+                # contains the official choices and direct-letter instruction.
+                question = item.get("question", item.get("query", item.get("text")))
+                if not question:
+                    raise ValueError(f"Missing question/query in {manifest_path}:{line_number}")
+                image_path = _resolve_vstar_image(root_dir, item.get("images", item.get("image")), item)
+                answer = _normalize_vstar_answer(item.get("answer", item.get("label")))
+                if answer is None:
+                    raise ValueError(f"Missing or invalid answer in {manifest_path}:{line_number}")
+                category = str(item.get("category") or _infer_vstar_category(image_path, root_dir))
+                records.append({
+                    **item,
+                    "id": str(item.get("id", item.get("question_id", line_number))),
+                    "question": question,
+                    "image": image_path,
+                    "answer": answer,
+                    "category": category,
+                })
+    else:
+        # Older official layout: one annotation JSON beside each image, where
+        # option 0 is the correct option by convention.
+        annotation_paths = sorted(glob.glob(os.path.join(root_dir, "**", "*.json"), recursive=True))
+        for annotation_path in annotation_paths:
+            if "/.cache/" in annotation_path:
+                continue
+            with open(annotation_path, "r", encoding="utf-8") as f:
+                item = json.load(f)
+            if not isinstance(item, dict) or "question" not in item or "options" not in item:
+                continue
+            image_path = _resolve_vstar_image(root_dir, None, item, annotation_path=annotation_path)
+            options = item["options"]
+            if not isinstance(options, list) or len(options) < 2:
+                raise ValueError(f"Invalid options in V*Bench annotation {annotation_path}")
+            records.append({
+                **item,
+                "id": os.path.relpath(annotation_path, root_dir),
+                "image": image_path,
+                "answer": "A",  # Official legacy V*Bench convention.
+                "category": _infer_vstar_category(annotation_path, root_dir),
+            })
+    if not records:
+        raise ValueError(
+            f"No valid V*Bench samples found under {root_dir}. "
+            "The directory currently appears to contain only download metadata; "
+            "complete the Hugging Face snapshot download so images and annotations are present."
+        )
+    return records
+
+
+def _normalize_vstar_answer(raw_answer: Any) -> str | None:
+    if raw_answer is None:
+        return None
+    match = re.search(r"\b([A-Z])\b", str(raw_answer).upper())
+    return match.group(1) if match else None
+
+
+def _infer_vstar_category(path: str, root_dir: str) -> str:
+    official_categories = {"direct_attributes", "relative_position", "OCR", "GPT4V-hard"}
+    relative_parts = os.path.relpath(path, root_dir).split(os.sep)
+    return next((part for part in relative_parts if part in official_categories), os.path.basename(os.path.dirname(path)))
+
+
+def _resolve_vstar_image(
+    root_dir: str,
+    image_value: Any,
+    item: dict,
+    annotation_path: str | None = None,
+) -> str:
+    """Resolve image references in both V*Bench release formats."""
+    image_references = image_value if isinstance(image_value, list) else [image_value]
+    image_references = [reference for reference in image_references if reference]
+    if annotation_path is not None:
+        stem = os.path.splitext(annotation_path)[0]
+        image_references.extend(stem + extension for extension in (".jpg", ".JPG", ".jpeg", ".png", ".webp"))
+
+    category = item.get("category")
+    for reference in image_references:
+        reference = str(reference)
+        candidates = [
+            reference,
+            os.path.join(root_dir, reference),
+            os.path.join(root_dir, os.path.basename(reference)),
+        ]
+        if category:
+            candidates.append(os.path.join(root_dir, str(category), os.path.basename(reference)))
+        # Manifest paths from the original evaluation setup can include an
+        # unrelated prefix such as ../tasks/vstar/processed/<category>/file.
+        for official_category in ("direct_attributes", "relative_position", "OCR", "GPT4V-hard"):
+            candidates.append(os.path.join(root_dir, official_category, os.path.basename(reference)))
+        for candidate in candidates:
+            if os.path.isfile(candidate):
+                return candidate
+    raise FileNotFoundError(
+        f"Could not resolve V*Bench image {image_references!r} under {root_dir}."
+    )
+
+
+def _extract_final_answer(response: str) -> str:
+    """Prefer the final answer field so letters in chain-of-thought are ignored."""
+    boxed = re.findall(r"\\boxed\s*\{\s*([^}]*)\s*\}", response, flags=re.IGNORECASE | re.DOTALL)
+    if boxed:
+        return boxed[-1].strip()
+    answer_tags = re.findall(r"<answer>\s*(.*?)\s*</answer>", response, flags=re.IGNORECASE | re.DOTALL)
+    if answer_tags:
+        return answer_tags[-1].strip()
+    return response.strip()
+
+
+def _extract_choice(response: str) -> str | None:
+    final_answer = _extract_final_answer(response)
+    matches = re.findall(r"\b([A-Z])\b", final_answer.upper())
+    return matches[-1] if matches else None
+
+
+def _extract_yes_no(response: str) -> str | None:
+    final_answer = _extract_final_answer(response).lower()
+    matches = re.findall(r"\b(yes|no)\b", final_answer)
+    return matches[-1] if matches else None
+
+
+def _write_local_evaluation(result_filepath: str, benchmark: str, metrics: dict, per_sample: List[dict]) -> dict:
+    output_path = os.path.splitext(result_filepath)[0] + "-metrics.json"
+    payload = {"benchmark": benchmark, "metrics": metrics, "per_sample": per_sample}
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    return {"evaluation_filepath": output_path, **metrics}
+
+
+def _evaluate_mcq_outputs(outputs: List[dict], benchmark: str, category_key: str = "category") -> dict:
+    per_sample = []
+    category_counts: dict[str, list[int]] = {}
+    for item in outputs:
+        prediction = _extract_choice(item["response"])
+        target = str(item["answer"]).strip().upper()
+        correct = prediction == target
+        category = str(item.get(category_key, "overall"))
+        category_counts.setdefault(category, [0, 0])
+        category_counts[category][0] += int(correct)
+        category_counts[category][1] += 1
+        per_sample.append({"id": item.get("id", item.get("index")), "prediction": prediction, "target": target, "correct": correct, "category": category})
+    total = len(per_sample)
+    correct_total = sum(int(item["correct"]) for item in per_sample)
+    metrics = {
+        "num_correct": correct_total,
+        "num_total": total,
+        "accuracy": correct_total / total if total else 0.0,
+        "by_category": {key: count[0] / count[1] for key, count in sorted(category_counts.items())},
+    }
+    return {"metrics": metrics, "per_sample": per_sample}
+
+
+def _evaluate_mmstar_outputs(outputs: List[dict]) -> dict:
+    return _evaluate_mcq_outputs(outputs, "mmstar", category_key="category")
+
+
+def _evaluate_vstar_outputs(outputs: List[dict]) -> dict:
+    return _evaluate_mcq_outputs(outputs, "vstar", category_key="category")
+
+
+def _pope_metrics_from_counts(counts: dict[str, int]) -> dict:
+    tp, fp, tn, fn = (counts[key] for key in ("tp", "fp", "tn", "fn"))
+    total = tp + fp + tn + fn
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    return {
+        "num_correct": tp + tn,
+        "num_total": total,
+        "accuracy": (tp + tn) / total if total else 0.0,
+        "precision": precision,
+        "recall": recall,
+        "f1": 2 * precision * recall / (precision + recall) if precision + recall else 0.0,
+        "yes_ratio": (tp + fp) / total if total else 0.0,
+        "confusion_matrix": dict(counts),
+    }
+
+
+def _evaluate_pope_outputs(outputs: List[dict]) -> dict:
+    counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
+    per_sample = []
+    by_split_counts: dict[str, dict[str, int]] = {}
+    for item in outputs:
+        prediction = _extract_yes_no(item["response"])
+        target = str(item["label"]).lower()
+        correct = prediction == target
+        if target == "yes":
+            if prediction == "yes":
+                outcome = "tp"
+            else:
+                outcome = "fn"
+        else:
+            if prediction == "yes":
+                outcome = "fp"
+            else:
+                outcome = "tn"
+        split = item["pope_split"]
+        counts[outcome] += 1
+        by_split_counts.setdefault(split, {"tp": 0, "fp": 0, "tn": 0, "fn": 0})
+        by_split_counts[split][outcome] += 1
+        per_sample.append({"id": item.get("id"), "prediction": prediction, "target": target, "correct": correct, "split": split})
+    metrics = _pope_metrics_from_counts(counts)
+    by_split = {key: _pope_metrics_from_counts(split_counts) for key, split_counts in sorted(by_split_counts.items())}
+    metrics["by_split"] = by_split
+    metrics["macro_average"] = {
+        metric_name: sum(split_metrics[metric_name] for split_metrics in by_split.values()) / len(by_split)
+        if by_split else 0.0
+        for metric_name in ("accuracy", "precision", "recall", "f1", "yes_ratio")
+    }
+    return {"metrics": metrics, "per_sample": per_sample}
+
+
 @dataclass(frozen=True)
 class BenchmarkSpec:
     name: str
@@ -293,12 +692,14 @@ class BenchmarkSpec:
     prepare_messages: Callable[[dict], List[dict]]
     sanitize_record: Callable[[dict], dict]
     save_outputs: Callable[[List[dict], str], None]
-    judge_module: Any
-    judge_read_fn: Callable[[List[str]], List[dict]]
-    judge_output_path_fn: Callable[[str], str]
+    judge_module: Any | None
+    judge_read_fn: Callable[[List[str]], List[dict]] | None
+    judge_output_path_fn: Callable[[str], str] | None
     hf_config: str | None = None
     cast_image_columns: tuple[str, ...] = ("image",)
     max_images_per_prompt: int = 1
+    dataset_loader: Optional[Callable[[argparse.Namespace], Any]] = None
+    local_evaluator: Optional[Callable[[List[dict]], dict]] = None
 
 
 BENCHMARK_SPECS: Dict[str, BenchmarkSpec] = {
@@ -345,20 +746,35 @@ BENCHMARK_SPECS: Dict[str, BenchmarkSpec] = {
         cast_image_columns=("decoded_image",),
         max_images_per_prompt=1,
     ),
-    "mmmu": BenchmarkSpec(
-        name="mmmu",
+    "mmmu_pro_10": BenchmarkSpec(
+        name="mmmu_pro_10",
         hf_root="MMMU/MMMU_Pro",
         hf_split="test",
-        result_filename="mmmu.json",
+        result_filename="mmmu_pro_10.json",
         prepare_messages=_build_mmmu_messages,
         sanitize_record=_sanitize_mmmu_record,
         save_outputs=_default_save_outputs,
         judge_module=judge_mmmu,
         judge_read_fn=judge_mmmu.read_mmmu_eval_data,
         judge_output_path_fn=_default_judge_output_path,
-        hf_config="standard (4 options)",
+        hf_config="standard (10 options)",
         cast_image_columns=(),
         max_images_per_prompt=7,
+    ),
+    "mmmu_pro_vision": BenchmarkSpec(
+        name="mmmu_pro_vision",
+        hf_root="MMMU/MMMU_Pro",
+        hf_split="test",
+        result_filename="mmmu_pro_vision.json",
+        prepare_messages=_build_mmmu_vision_messages,
+        sanitize_record=_sanitize_mmmu_vision_record,
+        save_outputs=_default_save_outputs,
+        judge_module=judge_mmmu,
+        judge_read_fn=judge_mmmu.read_mmmu_eval_data,
+        judge_output_path_fn=_default_judge_output_path,
+        hf_config="vision",
+        cast_image_columns=("image",),
+        max_images_per_prompt=1,
     ),
     "logicvista": BenchmarkSpec(
         name="logicvista",
@@ -416,6 +832,53 @@ BENCHMARK_SPECS: Dict[str, BenchmarkSpec] = {
         cast_image_columns=("image",),
         max_images_per_prompt=1,
     ),
+    "mmstar": BenchmarkSpec(
+        name="mmstar",
+        hf_root="Lin-Chen/MMStar",
+        hf_split="val",
+        result_filename="mmstar_val.json",
+        prepare_messages=_build_mmstar_messages,
+        sanitize_record=_sanitize_mmstar_record,
+        save_outputs=_default_save_outputs,
+        judge_module=None,
+        judge_read_fn=None,
+        judge_output_path_fn=None,
+        cast_image_columns=("image",),
+        max_images_per_prompt=1,
+        local_evaluator=_evaluate_mmstar_outputs,
+    ),
+    "pope": BenchmarkSpec(
+        name="pope",
+        hf_root="lmms-lab/POPE",
+        hf_split="test",
+        result_filename="pope.json",
+        prepare_messages=_build_pope_messages,
+        sanitize_record=_sanitize_pope_record,
+        save_outputs=_default_save_outputs,
+        judge_module=None,
+        judge_read_fn=None,
+        judge_output_path_fn=None,
+        cast_image_columns=(),
+        max_images_per_prompt=1,
+        dataset_loader=_load_pope_dataset,
+        local_evaluator=_evaluate_pope_outputs,
+    ),
+    "vstar": BenchmarkSpec(
+        name="vstar",
+        hf_root="",
+        hf_split="",
+        result_filename="vstar.json",
+        prepare_messages=_build_vstar_messages,
+        sanitize_record=_sanitize_vstar_record,
+        save_outputs=_default_save_outputs,
+        judge_module=None,
+        judge_read_fn=None,
+        judge_output_path_fn=None,
+        cast_image_columns=(),
+        max_images_per_prompt=1,
+        dataset_loader=_load_vstar_dataset,
+        local_evaluator=_evaluate_vstar_outputs,
+    ),
 }
 
 
@@ -424,7 +887,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--benchmarks",
         type=str,
-        default="mathvista,mathverse,mathvision,wemath,mmmu,logicvista,hallusionbench,freak",
+        default="mathvista,mathverse,mathvision,wemath,mmmu_pro_10,mmmu_pro_vision,logicvista,hallusionbench,freak",
         help="Comma-separated benchmark names. Supported: " + ", ".join(BENCHMARK_SPECS.keys()),
     )
     parser.add_argument("--checkpoint", type=str, required=True, help="Model checkpoint for vLLM inference.")
@@ -432,9 +895,35 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=str, default="results_all")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--judge-model-name", type=str, default="gpt-4o")
-    parser.add_argument("--api-key", type=str, required=True)
-    parser.add_argument("--api-url", type=str, default="https://api.openai.com/v1")
+    parser.add_argument("--api-key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD")
+    parser.add_argument("--api-url", type=str, default="https://yunwu.ai/v1")
     parser.add_argument("--judge-parallel-num", type=int, default=10)
+    parser.add_argument("--judge-temperature", type=float, default=0.0,
+                        help="Temperature for answer extraction and LLM judging (default keeps legacy behavior).")
+    parser.add_argument(
+        "--pope-annotation-dir",
+        type=str,
+        default=None,
+        help="Optional official local annotation directory. Omit with --pope-image-dir to load lmms-lab/POPE directly.",
+    )
+    parser.add_argument(
+        "--pope-image-dir",
+        type=str,
+        default=None,
+        help="Optional matching official MSCOCO image directory; must be used together with --pope-annotation-dir.",
+    )
+    parser.add_argument(
+        "--pope-splits",
+        type=str,
+        default="random,popular,adversarial",
+        help="Comma-separated POPE splits to run: random,popular,adversarial (default: all three).",
+    )
+    parser.add_argument(
+        "--vstar-data-dir",
+        type=str,
+        default=None,
+        help="Official V*Bench directory; annotation JSON files must be next to their paired images.",
+    )
     parser.add_argument(
         "--continue-on-error",
         action="store_true",
@@ -443,7 +932,9 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_benchmark_dataset(spec: BenchmarkSpec):
+def load_benchmark_dataset(spec: BenchmarkSpec, args: argparse.Namespace):
+    if spec.dataset_loader is not None:
+        return spec.dataset_loader(args)
     if spec.hf_config is None:
         dataset = load_dataset(spec.hf_root)[spec.hf_split]
     else:
@@ -457,7 +948,7 @@ def load_benchmark_dataset(spec: BenchmarkSpec):
 def prepare_generation_inputs(
     dataset,
     spec: BenchmarkSpec,
-    processor: Qwen2_5_VLProcessor,
+    processor: Any,
 ) -> tuple[List[dict], List[dict]]:
     inputs: List[dict] = []
     sanitized_records: List[dict] = []
@@ -518,13 +1009,17 @@ def _run_parallel_api_calls(
     messages_list: List[List[dict]],
     parallel_num: int,
     desc: str,
+    temperature: float = 0.0,
 ) -> List[str]:
     from concurrent.futures import ThreadPoolExecutor
 
     with ThreadPoolExecutor(max_workers=parallel_num) as executor:
         results = list(
             tqdm.tqdm(
-                executor.map(lambda msg: module.call_api(client, model_name, msg), messages_list),
+                executor.map(
+                    lambda msg: module.call_api(client, model_name, msg, temperature=temperature),
+                    messages_list,
+                ),
                 total=len(messages_list),
                 desc=desc,
             )
@@ -538,6 +1033,7 @@ def run_judge_pipeline(
     client: OpenAI,
     judge_model_name: str,
     judge_parallel_num: int,
+    judge_temperature: float = 0.0,
 ) -> dict:
     print(f"[{spec.name}] Loading saved results for judge: {result_filepath}")
     data_for_judge = spec.judge_read_fn([result_filepath])
@@ -554,6 +1050,7 @@ def run_judge_pipeline(
             messages_list=extraction_messages,
             parallel_num=judge_parallel_num,
             desc=f"{spec.name} Extraction",
+            temperature=judge_temperature,
         )
         for index, result in zip(extraction_indices, extraction_results):
             data_for_judge[index]["extracted_answer"] = result
@@ -567,6 +1064,7 @@ def run_judge_pipeline(
         messages_list=judge_messages,
         parallel_num=judge_parallel_num,
         desc=f"{spec.name} Judging",
+        temperature=judge_temperature,
     )
 
     judge_output_filepath = spec.judge_output_path_fn(result_filepath)
@@ -636,7 +1134,7 @@ def resolve_benchmark_specs(benchmark_names: str) -> List[BenchmarkSpec]:
 def run_single_benchmark(
     spec: BenchmarkSpec,
     llm: LLM,
-    processor: Qwen2_5_VLProcessor,
+    processor: Any,
     sampling_params: SamplingParams,
     client: OpenAI,
     args: argparse.Namespace,
@@ -645,7 +1143,7 @@ def run_single_benchmark(
     print(f"Starting benchmark: {spec.name}")
     start_time = time.time()
 
-    dataset = load_benchmark_dataset(spec)
+    dataset = load_benchmark_dataset(spec, args)
     print(f"[{spec.name}] Loaded dataset split `{spec.hf_split}` with {len(dataset)} samples.")
 
     inputs, sanitized_records = prepare_generation_inputs(dataset, spec, processor)
@@ -653,13 +1151,24 @@ def run_single_benchmark(
 
     result_filepath = os.path.join(args.out_dir, spec.result_filename)
     save_benchmark_outputs(spec, outputs, result_filepath)
-    judge_summary = run_judge_pipeline(
-        spec=spec,
-        result_filepath=result_filepath,
-        client=client,
-        judge_model_name=args.judge_model_name,
-        judge_parallel_num=args.judge_parallel_num,
-    )
+    if spec.local_evaluator is not None:
+        local_result = spec.local_evaluator(outputs)
+        judge_summary = _write_local_evaluation(
+            result_filepath=result_filepath,
+            benchmark=spec.name,
+            metrics=local_result["metrics"],
+            per_sample=local_result["per_sample"],
+        )
+        print(f"[{spec.name}] Deterministic metrics: {json.dumps(local_result['metrics'], ensure_ascii=False)}")
+    else:
+        judge_summary = run_judge_pipeline(
+            spec=spec,
+            result_filepath=result_filepath,
+            client=client,
+            judge_model_name=args.judge_model_name,
+            judge_parallel_num=args.judge_parallel_num,
+            judge_temperature=args.judge_temperature,
+        )
 
     elapsed = time.time() - start_time
     print(f"[{spec.name}] Completed in {elapsed / 60:.2f} minutes.")
@@ -667,11 +1176,11 @@ def run_single_benchmark(
         "benchmark": spec.name,
         "status": "success",
         "result_filepath": result_filepath,
-        "judge_filepath": judge_summary["judge_output_filepath"],
+        "evaluation_filepath": judge_summary.get("evaluation_filepath", judge_summary.get("judge_output_filepath")),
         "num_samples": len(outputs),
-        "judge_num_correct": judge_summary["num_correct"],
-        "judge_num_total": judge_summary["num_total"],
-        "judge_accuracy": judge_summary["accuracy"],
+        "num_correct": judge_summary["num_correct"],
+        "num_total": judge_summary["num_total"],
+        "accuracy": judge_summary["accuracy"],
         "elapsed_seconds": elapsed,
     }
 
@@ -685,7 +1194,7 @@ def main() -> None:
     print("Selected benchmarks:", [spec.name for spec in benchmark_specs])
 
     llm = build_shared_llm(args.checkpoint, args.tensor_parallel_size)
-    processor = Qwen2_5_VLProcessor.from_pretrained(args.checkpoint, trust_remote_code=True)
+    processor = AutoProcessor.from_pretrained(args.checkpoint, trust_remote_code=True)
     sampling_params = build_sampling_params()
     client = OpenAI(api_key=args.api_key, base_url=args.api_url)
 

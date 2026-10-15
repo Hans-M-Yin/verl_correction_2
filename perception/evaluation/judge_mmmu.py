@@ -83,7 +83,8 @@ def construct_messages_for_extraction(all_data: list):
             continue
 
         sys_msg = task_description + "\n" + "\n".join(extraction_examples())
-        user_query = dataitem["question"] + "\n\n" + "Model response: " + response + "\n\n" + "Extracted answer: "
+        q_text = dataitem.get("question", "[Question embedded in the image]")
+        user_query = q_text + "\n\n" + "Model response: " + response + "\n\n" + "Extracted answer: "
         messages.append([
             {"role": "system", "content": sys_msg},
             {"role": "user", "content": user_query},

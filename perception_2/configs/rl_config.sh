@@ -64,7 +64,7 @@ N_GPUS=8
 # Ablation Study, 后续再做
 TRIGGER_WARMUP_RATIO=0.3
 TRIGGER_START_RATIO=0.6
-TRIGGER_FINAL_RATIO=0.5
+TRIGGER_FINAL_RATIO=0.4
 
 ########################
 # Logging

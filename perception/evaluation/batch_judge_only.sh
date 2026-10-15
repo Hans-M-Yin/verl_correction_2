@@ -62,11 +62,11 @@ for MODEL_NAME in $MODEL_LIST; do
     # --- 第二步: Judge ---
     echo "    [Step 2/2] 运行模型打分 (Judge)..."
     echo $MODEL_OUT_DIR
-    python judge_mathvista.py \
-        --api_key "$CORRECTION_PROJECT_API_KEY" \
-        --api_url "$CORRECTION_PROJECT_API_URL" \
-        --eval_basedir "$MODEL_OUT_DIR" \
-        --eval_file "mathvista.json"
+    # python judge_mathvista.py \
+    #     --api_key "$CORRECTION_PROJECT_API_KEY" \
+    #     --api_url "$CORRECTION_PROJECT_API_URL" \
+    #     --eval_basedir "$MODEL_OUT_DIR" \
+    #     --eval_file "mathvista.json"
 
     python judge_mathverse.py \
         --api_key "$CORRECTION_PROJECT_API_KEY" \

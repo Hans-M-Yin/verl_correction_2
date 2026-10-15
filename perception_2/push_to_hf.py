@@ -1,9 +1,9 @@
 from huggingface_hub import HfApi, create_repo, upload_folder
 
-local_model_path = "saved_models/0304_qwen2_5_vl_7b_mix_10K_no_kl_n8_170"
+local_model_path = "merged_checkpoints/0414_base_run_30k_global_step_302"
 
 
-repo_id = "hansQAQ/0304_qwen2_5_vl_7b_mix_10K_no_kl_n8_170"
+repo_id = "hansQAQ/0414_base_run_30k_302"
 create_repo(repo_id, exist_ok=True)
 
 api = HfApi()

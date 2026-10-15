@@ -71,6 +71,18 @@ from perception.utils.utils import init_triggers, add_correction_trigger
 import logging
 logger = logging.getLogger(__name__)
 
+
+def _json_default(value: Any):
+    """Convert array/tensor values used in rollout metadata into JSON values."""
+    if isinstance(value, np.generic):
+        return value.item()
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
 @dataclass
 class ResourcePoolManager:
     """
@@ -478,7 +490,10 @@ class RayPPOTrainer:
         for i in range(n):
             entry = {k: v[i] for k, v in base_data.items()}
             # logger.warning(f'################### {entry}')
-            lines.append(json.dumps(entry, ensure_ascii=False))
+            # reward metadata is stored as NumPy arrays in ``non_tensor_batch``.
+            # Indexing such an array yields e.g. ``np.int64``, which the stdlib
+            # JSON encoder cannot serialize without an explicit conversion.
+            lines.append(json.dumps(entry, ensure_ascii=False, default=_json_default))
 
         with open(filename, "w") as f:
             f.write("\n".join(lines) + "\n")
@@ -1743,6 +1758,14 @@ class RayPPOTrainer:
                 metrics.update(compute_variance_proxy_metrics(batch=batch, gradient_norm=gradient_norm))
                 # Note: mismatch metrics (KL, PPL, etc.) are collected at line 1179 after advantage computation
 
+                # this is experimental and may be changed/removed in the future
+                # in favor of a general-purpose data buffer pool
+                if hasattr(self.train_dataset, "on_batch_end"):
+                    self.train_dataset.on_batch_end(batch=batch)
+                    if hasattr(self.train_dataset, "get_metrics"):
+                        metrics.update(self.train_dataset.get_metrics())
+
+
                 # this is experimental and may be changed/removed in the future in favor of a general-purpose one
                 if isinstance(self.train_dataloader.sampler, AbstractCurriculumSampler):
                     self.train_dataloader.sampler.update(batch=batch)
@@ -1768,8 +1791,8 @@ class RayPPOTrainer:
                     progress_bar.close()
                     return
 
-                # this is experimental and may be changed/removed in the future
-                # in favor of a general-purpose data buffer pool
-                if hasattr(self.train_dataset, "on_batch_end"):
-                    # The dataset may be changed after each training batch
-                    self.train_dataset.on_batch_end(batch=batch)
+                # # this is experimental and may be changed/removed in the future
+                # # in favor of a general-purpose data buffer pool
+                # if hasattr(self.train_dataset, "on_batch_end"):
+                #     # The dataset may be changed after each training batch
+                #     self.train_dataset.on_batch_end(batch=batch)
