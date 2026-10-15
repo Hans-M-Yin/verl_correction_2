@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 # Qwen3-VL-8B Vanilla GRPO control on the exact examples used by the MIRA run.
-set -x
-
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/../../configs/rl_config.sh"
 
 export $(grep -v '^#' "$SCRIPT_DIR/../../configs/reward_function_hyperparam.env" | xargs)
 
 MODEL_PATH="../models/qwen3-vl-8b"
-TRAIN_FILE="_preprocessed_dataset/virl39k_mmk12_gpt54_vanilla/train.parquet"
-
 export CORRECTION_COEF=0.0
 KL_COEF=0.004
 EXP_NAME="0727_qwen3_vl_8b_virl39k_mmk12_vanilla_grpo"
@@ -20,8 +16,8 @@ ROLLOUT_SAVE_PATH="./rollouts_saved/${EXP_NAME}"
 
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files="$TRAIN_FILE" \
-    data.val_files="$VAL_FILE" \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=$TRAIN_BATCH_SIZE \
     data.max_prompt_length=$MAX_PROMPT_LENGTH \
     data.max_response_length=$MAX_RESPONSE_LENGTH \

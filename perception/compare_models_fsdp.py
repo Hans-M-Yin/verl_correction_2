@@ -308,9 +308,10 @@ def analyze_checkpoint_structure(checkpoint_dir):
 
 def main():
     """主函数"""
-    # 使用示例
-    checkpoint1 = "/root/autodl-tmp/perception/verl/checkpoints/verl_correction/qwen2_5_vl_3b_data1_3k/global_step_60/actor"
-    checkpoint2 = "/root/autodl-tmp/perception/verl/checkpoints/verl_correction/qwen2_5_vl_3b_data1_3k/global_step_210/actor"
+    checkpoint1 = os.getenv("CHECKPOINT_1")
+    checkpoint2 = os.getenv("CHECKPOINT_2")
+    if not checkpoint1 or not checkpoint2:
+        raise SystemExit("Set CHECKPOINT_1 and CHECKPOINT_2 to the checkpoint directories to compare.")
 
     # 首先分析检查点结构
     analyze_checkpoint_structure(checkpoint1)

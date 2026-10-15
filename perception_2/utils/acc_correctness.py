@@ -1,10 +1,11 @@
+import os
 from openai import OpenAI
 import json
 from multiprocessing import Pool, cpu_count
 from tqdm import tqdm
 client = OpenAI(
-    base_url="https://yunwu.ai/v1",
-    api_key="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD",
+    base_url=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
+    api_key=os.getenv("CORRECTION_PROJECT_API_KEY"),
 )
 
 json_file_path = "rollouts_saved/test_0223_mix_data_7b_REDESIGN_REWARD/val/210.jsonl"

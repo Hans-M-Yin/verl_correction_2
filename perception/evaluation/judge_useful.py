@@ -599,10 +599,10 @@ def parse_args() -> argparse.Namespace:
         help="Benchmark type for image loading.",
     )
     parser.add_argument("--image-root", default=None, metavar="DIR", help="Optional local image root.")
-    parser.add_argument("--api-key", default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD", metavar="KEY", help="API key for judge model.")
+    parser.add_argument("--api-key", default=os.getenv("CORRECTION_PROJECT_API_KEY"), metavar="KEY", help="API key for judge model.")
     parser.add_argument(
         "--api-url",
-        default="https://yunwu.ai/v1",
+        default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
         metavar="URL",
         help="API base URL.",
     )

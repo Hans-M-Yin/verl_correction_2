@@ -6,7 +6,7 @@
 # claim in early reasoning that the model later revises into an incorrect one.
 #
 # Optional environment overrides:
-#   JUDGE_API_KEY="$AZURE_OPENAI_API_KEY" AZURE_LOGID=3200636808 \
+#   JUDGE_API_KEY="$AZURE_OPENAI_API_KEY" AZURE_LOGID="$YOUR_AZURE_LOG_ID" \
 #   JUDGE_PARALLEL=2 \
 #   bash perception/evaluation/run_overcorrection_analysis.sh
 #
@@ -23,15 +23,19 @@ EVAL_ROOT="${EVAL_ROOT:-perception/evaluation/eval_results}"
 MIRA_DIR="${MIRA_DIR:-0423_modify_correction_low_kl_30k_augmented_SPRIOUS_REAL_global_step_360}"
 GRPO_DIR="${GRPO_DIR:-0423_run_vanilla_GRPO_30k_global_step_224}"
 JUDGE_MODEL="${JUDGE_MODEL:-gpt-5.2-2025-12-11}"
-JUDGE_AZURE_ENDPOINT="${JUDGE_AZURE_ENDPOINT:-https://aidp-i18ntt-sg.byteintl.net/api/modelhub/online/v2/crawl}"
+JUDGE_AZURE_ENDPOINT="${JUDGE_AZURE_ENDPOINT:-}"
 JUDGE_AZURE_API_VERSION="${JUDGE_AZURE_API_VERSION:-2024-02-01}"
 JUDGE_API_KEY="${JUDGE_API_KEY:-${AZURE_OPENAI_API_KEY:-}}"
-AZURE_LOGID="${AZURE_LOGID:-3200636808}"
+AZURE_LOGID="${AZURE_LOGID:-}"
 JUDGE_PARALLEL="${JUDGE_PARALLEL:-2}"
 RERUN_EXISTING="${RERUN_EXISTING:-0}"
 
 if [[ -z "$JUDGE_API_KEY" ]]; then
     echo "Set JUDGE_API_KEY or AZURE_OPENAI_API_KEY before running this script." >&2
+    exit 1
+fi
+if [[ -z "$JUDGE_AZURE_ENDPOINT" ]]; then
+    echo "Set JUDGE_AZURE_ENDPOINT before running this script." >&2
     exit 1
 fi
 

@@ -1,12 +1,10 @@
-set -x
 ENGINE=${1:-vllm}
-RESUME_PATH="checkpoints/verl_correction/qwen2_5_vl_7b_mix_10K/global_step_180"
-
+RESUME_PATH="${RESUME_PATH:-}"
 # Run on 901b2136
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=../data/preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260218_205144_filtered/train.parquet \
-    data.val_files=../data/mathvista_test_sample224.parquet \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=128 \
     data.max_prompt_length=5500 \
     data.max_response_length=1500 \
@@ -14,7 +12,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     data.truncation='error' \
     data.image_key=images \
     actor_rollout_ref.actor.strategy="fsdp2" \
-    actor_rollout_ref.model.path=/root/autodl-tmp/qwen2.5-vl-7b \
+    actor_rollout_ref.model.path="${MODEL_PATH:?Set MODEL_PATH to the policy model}" \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.model.use_fused_kernels=True \
@@ -42,7 +40,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     reward_model.use_reward_loop=True \
     reward_model.enable=True \
-    reward_model.model.path=/root/autodl-tmp/qwen3-vl-8b \
+    reward_model.model.path="${REWARD_MODEL_PATH:?Set REWARD_MODEL_PATH to the reward model}" \
     reward_model.rollout.gpu_memory_utilization=0.6 \
     reward_model.rollout.tensor_model_parallel_size=2 \
     reward_model.rollout.name=vllm \
@@ -67,7 +65,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     +trainer.trigger_enable_schedule=True \
     +trainer.trigger_file_path=./perception/utils/triggers.json \
     trainer.resume_mode="resume_path" \
-    trainer.resume_from_path="$RESUME_PATH" \
+    trainer.resume_from_path="${RESUME_PATH:?Set RESUME_PATH to the checkpoint}" \
     trainer.validation_data_dir=./rollouts_saved/test_0219_mix_data_7b/val/ \
     trainer.rollout_data_dir=./rollouts_saved/test_0219_mix_data_7b/train/ \
     custom_reward_function.path=perception/reward_function_loop.py \

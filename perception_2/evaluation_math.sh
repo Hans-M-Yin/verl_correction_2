@@ -16,8 +16,8 @@ TARGET_ROOT="${1:-./merged_checkpoints}"    # 模型目录
 OUT_DIR_ROOT="${2:-./eval_results}"         # 总输出目录
 
 # API 配置 (可以直接在此修改，或执行前 export)
-export CORRECTION_PROJECT_API_KEY="${CORRECTION_PROJECT_API_KEY:-sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD}"
-export CORRECTION_PROJECT_API_URL="${CORRECTION_PROJECT_API_URL:-https://yunwu.ai/v1}"
+export CORRECTION_PROJECT_API_KEY
+export CORRECTION_PROJECT_API_URL="${CORRECTION_PROJECT_API_URL:-https://api.openai.com/v1}"
 
 # 2. 检查路径
 if [ ! -d "$TARGET_ROOT" ]; then

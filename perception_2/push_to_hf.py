@@ -1,14 +1,11 @@
-from huggingface_hub import HfApi, create_repo, upload_folder
+"""Legacy checkpoint uploader disabled pending explicit repository review.
 
-local_model_path = "merged_checkpoints/0414_base_run_30k_global_step_302"
+Use ``scripts/upload_selected_checkpoints.py`` for the reviewed checkpoint
+archive. It checks visibility and uploads only the selected model files.
+"""
 
-
-repo_id = "hansQAQ/0414_base_run_30k_302"
-create_repo(repo_id, exist_ok=True)
-
-api = HfApi()
-api.upload_folder(
-    folder_path=local_model_path,
-    repo_id=repo_id,
-    repo_type="model",
-)
+if __name__ == "__main__":
+    raise SystemExit(
+        "This legacy uploader is disabled. "
+        "Use scripts/upload_selected_checkpoints.py with explicit repositories."
+    )

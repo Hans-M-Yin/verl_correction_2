@@ -333,7 +333,7 @@ BENCHMARK_SPECS: Dict[str, BenchmarkSpec] = {
         cast_image_columns=(),
     ),
     "freak": BenchmarkSpec(
-        "freak", "hansQAQ/FREAK", "test", "freak_test.json",
+        "freak", os.getenv("FREAK_DATASET_ID", ""), "test", "freak_test.json",
         _build_freak_messages, _default_sanitize, _default_save_outputs,
         judge_freak, judge_freak.read_freak_eval_data,
         _default_judge_output_path,
@@ -474,9 +474,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=str, default="results_internvl")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--judge-model-name", type=str, default="gpt-4o")
-    parser.add_argument("--api-key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD",
+    parser.add_argument("--api-key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"),
                         help="API key for judge (defaults to --api-key).")
-    parser.add_argument("--api-url", type=str, default="https://yunwu.ai/v1",
+    parser.add_argument("--api-url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
                         help="Base URL for judge API (defaults to --api-url).")
     parser.add_argument("--judge-parallel-num", type=int, default=10)
     parser.add_argument("--continue-on-error", action="store_true")
@@ -489,6 +489,8 @@ def main() -> None:
     os.makedirs(args.out_dir, exist_ok=True)
 
     benchmark_names = [n.strip().lower() for n in args.benchmarks.split(",") if n.strip()]
+    if "freak" in benchmark_names and not os.getenv("FREAK_DATASET_ID"):
+        raise ValueError("Set FREAK_DATASET_ID to the Hugging Face dataset id before evaluating FREAK.")
     unknown = [n for n in benchmark_names if n not in BENCHMARK_SPECS]
     if unknown:
         raise ValueError(f"Unknown benchmarks: {unknown}. Supported: {sorted(BENCHMARK_SPECS.keys())}")

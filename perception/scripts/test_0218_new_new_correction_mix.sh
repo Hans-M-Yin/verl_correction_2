@@ -1,11 +1,10 @@
-set -x
 ENGINE=${1:-vllm}
 #RESUME_PATH="checkpoints/verl_correction/qwen2_5_vl_3b_data1_6K_REMOVE_CORRECTION/global_step_80"
 
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=../data/preprocessed_dataset/dataset1_virl_38k_qwen2.5-vl-3b_20260122_102600_6000_combine_filtered/train.parquet \
-    data.val_files=../data/preprocessed_dataset/dataset1_virl_38k_qwen2.5-vl-3b_20260122_102600_6000_combine_filtered/test.parquet \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=32 \
     data.max_prompt_length=5500 \
     data.max_response_length=1500 \
@@ -13,7 +12,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     data.truncation='error' \
     data.image_key=images \
     actor_rollout_ref.actor.strategy="fsdp2" \
-    actor_rollout_ref.model.path=/root/autodl-tmp/qwen2.5-vl-3b \
+    actor_rollout_ref.model.path="${MODEL_PATH:?Set MODEL_PATH to the policy model}" \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.model.use_fused_kernels=True \
@@ -42,7 +41,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     reward_model.use_reward_loop=True \
     reward_model.enable=True \
-    reward_model.model.path=/root/autodl-tmp/qwen3-vl-8b \
+    reward_model.model.path="${REWARD_MODEL_PATH:?Set REWARD_MODEL_PATH to the reward model}" \
     reward_model.rollout.gpu_memory_utilization=0.6 \
     reward_model.rollout.tensor_model_parallel_size=1 \
     reward_model.rollout.name=vllm \

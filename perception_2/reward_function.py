@@ -13,10 +13,9 @@ from PIL import Image
 logger = logging.getLogger(__name__)
 
 openai_api_key = "EMPTY"
-openai_api_base = os.environ.get("LLM_AS_A_JUDGE_BASE", "http://222.29.51.14:18903/v1")
+openai_api_base = os.environ.get("LLM_AS_A_JUDGE_BASE", "http://localhost:18903/v1")
 model_name = "qwen3-vl-30b"
-# openai_api_key = "sk-dsNGokuZOsnm8gKru7chFbhhZnVy8Jx9IVvull1duVPIBiPD"
-# openai_api_base = "https://yunwu.ai/v1"
+# Configure judge endpoint through LLM_AS_A_JUDGE_BASE.
 # model_name = "gemini-2.5-flash-nothinking"
 client = OpenAI(
     api_key=openai_api_key,

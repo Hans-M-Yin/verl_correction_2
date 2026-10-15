@@ -33,8 +33,8 @@ def parse_args():
     parser.add_argument("--input_file", type=str, required=True, help="Path to the mathvista.json file")
     parser.add_argument("--output_file", type=str, default="consistency_results.json", help="Path to save results")
     parser.add_argument("--model_name", type=str, default="gpt-4o", help="Judge model name")
-    parser.add_argument("--api_key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD", help="API key")
-    parser.add_argument("--api_url", type=str, default="https://yunwu.ai/v1", help="API base URL")
+    parser.add_argument("--api_key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"), help="API key")
+    parser.add_argument("--api_url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"), help="API base URL")
     parser.add_argument("--parallel_num", type=int, default=20, help="Number of parallel requests")
     return parser.parse_args()
 

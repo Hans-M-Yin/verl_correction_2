@@ -1,4 +1,4 @@
-MODEL_PATH="/data/yzh/qwen3-vl-30b-a3b-instruct"
+MODEL_PATH="${MODEL_PATH:?Set MODEL_PATH to a local model directory or Hugging Face model ID}"
 PORT=18903
 SERVED_NAME="qwen3-vl-30b-a3b"
 TENSOR_PARALLEL_SIZE=4

@@ -12,20 +12,16 @@ unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
 ########################
 # * Model
 ########################
-# MODEL_PATH= Qwen/Qwen2.5-VL-7B-Instruct
-# RM_MODEL_PATH=Qwen/Qwen3-VL-32B-Instruct
-MODEL_PATH=/mnt/hdfs/byte_ai_sales/user/user/yinzhihan/models/qwen2.5-vl-7b
-RM_MODEL_PATH=/mnt/hdfs/byte_ai_sales/user/user/yinzhihan/models/qwen3-vl-32b
-# RM_MODEL_PATH=/mnt/hdfs/byte_ai_sales/user/user/yinzhihan/models/qwen2.5-vl-32b
+MODEL_PATH="${MODEL_PATH:-Qwen/Qwen2.5-VL-7B-Instruct}"
+RM_MODEL_PATH="${RM_MODEL_PATH:-Qwen/Qwen3-VL-32B-Instruct}"
 
 ########################
 # Data
 ########################
-TRAIN_FILE=_preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260218_205144_filtered_PROCESSED_NEW_SYSTEM_PROMPT/train.parquet
-VAL_FILE=_preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260218_205144_filtered_PROCESSED_NEW_SYSTEM_PROMPT/test.parquet
-
-TRAIN_FILE_30K=_preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260302_162334_filtered_NEW_SYSTEM_PROMPT_PROCESSED/train.parquet
-VAL_FILE_30K=_preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260218_205144_filtered_PROCESSED_NEW_SYSTEM_PROMPT/test.parquet
+TRAIN_FILE="${TRAIN_FILE:-}"
+VAL_FILE="${VAL_FILE:-}"
+TRAIN_FILE_30K="${TRAIN_FILE_30K:-}"
+VAL_FILE_30K="${VAL_FILE_30K:-${VAL_FILE:-}}"
 
 TRAIN_BATCH_SIZE=128 # 可能调大
 MAX_PROMPT_LENGTH=5500
@@ -78,4 +74,3 @@ EXP_NAME=qwen2_5_vl_7b_mix_10K_no_correction_n8
 TRIGGER_FILE=./perception/utils/triggers.json
 
 ROLLOUT_SAVE_PATH=./rollout_saved/temp
-

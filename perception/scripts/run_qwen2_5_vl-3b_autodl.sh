@@ -1,17 +1,15 @@
-set -x
-ENGINE=${1:-vllm}
-
+ENGINE=${ENGINE:-vllm}
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=../data/preprocessed_dataset/dataset1_virl_38k_20250109_3000//train.parquet \
-    data.val_files=../data/preprocessed_dataset/dataset1_virl_38k_20250109_3000//test.parquet \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=32 \
     data.max_prompt_length=8192 \
     data.max_response_length=8192 \
     data.filter_overlong_prompts=False \
     data.truncation='error' \
     data.image_key=images \
-    actor_rollout_ref.model.path=/root/autodl-tmp/qwen2.5-vl-3b \
+    actor_rollout_ref.model.path="${MODEL_PATH:-Qwen/Qwen2.5-VL-3B-Instruct}" \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.model.use_fused_kernels=True \
@@ -39,7 +37,7 @@ VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     reward_model.use_reward_loop=True \
     reward_model.enable=True \
-    reward_model.model.path=/root/autodl-tmp/qwen3-vl-8b \
+    reward_model.model.path="${REWARD_MODEL_PATH:-Qwen/Qwen3-VL-8B-Instruct}" \
     reward_model.rollout.name=vllm \
     reward_model.rollout.gpu_memory_utilization=0.4 \
     reward_model.rollout.tensor_model_parallel_size=1 \

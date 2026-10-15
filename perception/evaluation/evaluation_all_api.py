@@ -206,8 +206,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--model", type=str, required=True,
                         help="Model name for the inference API (e.g. gpt-4o, claude-sonnet-4-20250514).")
-    parser.add_argument("--api-key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD")
-    parser.add_argument("--api-url", type=str, default="https://yunwu.ai/v1",
+    parser.add_argument("--api-key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"))
+    parser.add_argument("--api-url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
                         help="Base URL for inference API.")
     parser.add_argument("--out-dir", type=str, default="results_api")
     parser.add_argument("--seed", type=int, default=0)
@@ -217,9 +217,9 @@ def parse_args() -> argparse.Namespace:
                         help="Number of parallel workers for inference API calls.")
     # Judge arguments (same as evaluation_all.py)
     parser.add_argument("--judge-model-name", type=str, default="gpt-4o")
-    parser.add_argument("--judge-api-key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD",
+    parser.add_argument("--judge-api-key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"),
                         help="API key for judge (defaults to --api-key).")
-    parser.add_argument("--judge-api-url", type=str, default="https://yunwu.ai/v1",
+    parser.add_argument("--judge-api-url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
                         help="Base URL for judge API (defaults to --api-url).")
     parser.add_argument("--judge-parallel-num", type=int, default=10)
     parser.add_argument("--continue-on-error", action="store_true",

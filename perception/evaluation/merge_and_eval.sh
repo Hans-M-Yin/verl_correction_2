@@ -75,8 +75,7 @@ for EXP_NAME in $EXP_LIST; do
                     --benchmarks "mathvista,mathverse,mathvision,wemath" \
                     --continue-on-error \
                     --out-dir "./perception/evaluation/eval_results/$TARGET_DIR_NAME" \
-                    --api-key "sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD" \
-                    --api-url "https://yunwu.ai/v1"
+                    --api-url "${JUDGE_API_URL:-${CORRECTION_PROJECT_API_URL:-https://api.openai.com/v1}}"
                 if [ $? -eq 0 ]; then
                     echo "  [评估完成]"
                 else

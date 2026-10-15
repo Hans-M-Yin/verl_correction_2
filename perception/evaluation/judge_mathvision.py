@@ -67,8 +67,8 @@ openend_template = (
 def parse_args():
     parser = argparse.ArgumentParser(description="MathVision API Judge ArgParser")
     parser.add_argument("--model_name", "--model-name", type=str, default="gpt-4o", help="Model name for API")
-    parser.add_argument("--api_key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD", help="API key")
-    parser.add_argument("--api_url", type=str, default="https://yunwu.ai/v1", help="API base URL")
+    parser.add_argument("--api_key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"), help="API key")
+    parser.add_argument("--api_url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"), help="API base URL")
     parser.add_argument("--eval_basedir", "--eval-basedir", type=str, default="",
                         help="Base directory to scan for json files")
     parser.add_argument("--eval_file", "--eval-file", type=str, default="",

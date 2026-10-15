@@ -19,8 +19,8 @@ OUT_DIR_ROOT="${2:-./eval_results}"         # 输出目录
 SELECTED_MODELS="$3"                        # 用户指定模型（可选）
 
 # API 配置
-export CORRECTION_PROJECT_API_KEY="${CORRECTION_PROJECT_API_KEY:-sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD}"
-export CORRECTION_PROJECT_API_URL="${CORRECTION_PROJECT_API_URL:-https://yunwu.ai/v1}"
+export CORRECTION_PROJECT_API_KEY
+export CORRECTION_PROJECT_API_URL="${CORRECTION_PROJECT_API_URL:-https://api.openai.com/v1}"
 
 # 2. 检查模型目录
 if [ ! -d "$TARGET_ROOT" ]; then

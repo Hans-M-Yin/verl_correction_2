@@ -1,7 +1,7 @@
 """
 FREAK dataset structure and adaptations
 --------------------------------------
-Hugging Face dataset: `hansQAQ/FREAK`
+Hugging Face dataset is selected through the `FREAK_DATASET_ID` environment variable.
 
 Observed schema for `default/test`:
 - `question`: question text
@@ -41,7 +41,7 @@ SYSTEM_PROMPT = (
 
 ds_collections = {
     "FREAK_test": {
-        "root": "hansQAQ/FREAK",
+        "root": os.getenv("FREAK_DATASET_ID", ""),
         "max_new_tokens": 4096,
         "min_new_tokens": 1,
         "split": "test"
@@ -65,7 +65,10 @@ def build_question(data_item):
 
 
 def evaluate(args):
-    dataset = load_dataset(ds_collections[args.datasets]["root"])[ds_collections[args.datasets]["split"]]
+    dataset_id = ds_collections[args.datasets]["root"]
+    if not dataset_id:
+        raise ValueError("Set FREAK_DATASET_ID to the Hugging Face dataset id before evaluating FREAK.")
+    dataset = load_dataset(dataset_id)[ds_collections[args.datasets]["split"]]
     dataset = dataset.cast_column("image", Image(decode=True))
     inputs = []
     processor = Qwen2_5_VLProcessor.from_pretrained(args.checkpoint, trust_remote_code=True)

@@ -1,18 +1,16 @@
-set -x
-ENGINE=${1:-vllm}
-RESUME_PATH="/share5/yzh/perception/verl/checkpoints/verl_correction/STANDARD_qwen2_5_vl_3b_data1_3k/global_step_480"
-
+ENGINE=${ENGINE:-vllm}
+RESUME_PATH="${RESUME_PATH:-}"
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=4,5 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=/share5/yzh/perception/data/dataset/standard_dataset1_virl_38k_20251222_222450/train.parquet \
-    data.val_files=/share5/yzh/perception/data/dataset/standard_dataset1_virl_38k_20251222_222450/test.parquet \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=64 \
     data.max_prompt_length=8192 \
     data.max_response_length=12000 \
     data.filter_overlong_prompts=False \
     data.truncation='error' \
     data.image_key=images \
-    actor_rollout_ref.model.path=/share3/yzh/qwen2.5-vl-3b \
+    actor_rollout_ref.model.path="${MODEL_PATH:-Qwen/Qwen2.5-VL-3B-Instruct}" \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.model.use_fused_kernels=True \
@@ -48,6 +46,6 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=4,5 python3 -m verl.trainer.ma
     trainer.test_freq=5 \
     trainer.total_epochs=15 \
         trainer.resume_mode="resume_path" \
-    trainer.resume_from_path="$RESUME_PATH" \
+    trainer.resume_from_path="${RESUME_PATH:?Set RESUME_PATH to the checkpoint}" \
     custom_reward_function.path=perception/reward_function.py $@
 

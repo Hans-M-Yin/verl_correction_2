@@ -30,8 +30,8 @@ client = OpenAI(
     api_key="EMPTY"
 )
 judge_client = OpenAI(
-    base_url="https://yunwu.ai/v1",
-    api_key="sk-pgdNpO2MAkEGybNtGGQPyoqIlSXadqcvQK8A0RNw1WxZhnfh"
+    base_url=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"),
+    api_key=os.getenv("CORRECTION_PROJECT_API_KEY")
 )
 # 设置日志
 logging.basicConfig(

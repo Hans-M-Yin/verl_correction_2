@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # Qwen2-VL-7B vanilla-GRPO control, following the existing 0423 vanilla recipe.
-set -x
-
 echo "你好######你好######你好######你好######你好######你好######你好######你好######"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -15,13 +13,12 @@ KL_COEF=0.004
 EXP_NAME="0725_test_qwen2_vl_7b_vanilla_grpo"
 SAVE_FREQ=112
 EPOCHS=2
-TRAIN_FILE="_preprocessed_dataset/dataset_20K_0423_VANILLA/standard_NONE_20260423_024929/train.parquet"
 ROLLOUT_SAVE_PATH="./rollouts_saved/${EXP_NAME}"
 
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files="$TRAIN_FILE" \
-    data.val_files="$VAL_FILE" \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=$TRAIN_BATCH_SIZE \
     data.max_prompt_length=$MAX_PROMPT_LENGTH \
     data.max_response_length=$MAX_RESPONSE_LENGTH \

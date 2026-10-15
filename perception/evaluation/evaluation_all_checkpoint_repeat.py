@@ -46,7 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--judge-temperature", type=float, default=0.7,
                         help="Qwen judge temperature for both extraction and correctness calls.")
     parser.add_argument("--api-key", default=os.getenv("JUDGE_API_KEY", "EMPTY"))
-    parser.add_argument("--api-url", required=True,
+    parser.add_argument("--api-url", default=os.getenv("JUDGE_API_URL", os.getenv("CORRECTION_PROJECT_API_URL")),
                         help="OpenAI-compatible Qwen3-VL-32B judge base URL, e.g. http://HOST:PORT/v1.")
     parser.add_argument("--judge-parallel-num", type=int, default=8)
     parser.add_argument("--continue-on-error", action="store_true")

@@ -1,4 +1,3 @@
-set -x
 ENGINE=${1:-vllm}
 
 source "$(dirname "$0")/../configs/rl_config.sh"
@@ -6,9 +5,6 @@ export $(grep -v '^#' ../configs/reward_function_hyperparam.env | xargs)
 
 DATE=$(date +%m%d)
 EXP_NAME="${DATE}_run_vanilla_GRPO_n8"
-
-TRAIN_FILE="_preprocessed_dataset/dataset_mixed_22k_qwen3-vl-8b_20260218_205144_VANILLA/standard_NONE_20260414_035518/train.parquet"
-
 ROLLOUT_SAVE_PATH="./rollouts_saved/${EXP_NAME}"
 SAVE_FREQ=128
 
@@ -16,8 +12,8 @@ SAVE_FREQ=128
 echo $N_GPUS
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=$TRAIN_FILE \
-    data.val_files=$VAL_FILE \
+    data.train_files="${TRAIN_FILE:?Set TRAIN_FILE to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=$TRAIN_BATCH_SIZE \
     data.max_prompt_length=$MAX_PROMPT_LENGTH \
     data.max_response_length=$MAX_RESPONSE_LENGTH \

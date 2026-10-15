@@ -1,4 +1,3 @@
-set -x
 ENGINE=${1:-vllm}
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -14,14 +13,12 @@ DATE=$(date +%m%d)
 EXP_NAME="${DATE}_with_correction_low_kl_30k_augmented"
 SAVE_FREQ=120
 EPOCHS=2
-TRAIN_FILE_30K=_preprocessed_dataset/0416_agumented/train.parquet
-
 ROLLOUT_SAVE_PATH="./rollouts_saved/${EXP_NAME}"
 echo $N_GPUS
 VLLM_USE_V1=1 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=$TRAIN_FILE_30K \
-    data.val_files=$VAL_FILE \
+    data.train_files="${TRAIN_FILE_30K:?Set TRAIN_FILE_30K to the training parquet}" \
+    data.val_files="${VAL_FILE:?Set VAL_FILE to the validation parquet}" \
     data.train_batch_size=$TRAIN_BATCH_SIZE \
     data.max_prompt_length=$MAX_PROMPT_LENGTH \
     data.max_response_length=$MAX_RESPONSE_LENGTH \

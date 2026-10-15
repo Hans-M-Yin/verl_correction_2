@@ -820,7 +820,7 @@ BENCHMARK_SPECS: Dict[str, BenchmarkSpec] = {
     ),
     "freak": BenchmarkSpec(
         name="freak",
-        hf_root="hansQAQ/FREAK",
+        hf_root=os.getenv("FREAK_DATASET_ID", ""),
         hf_split="test",
         result_filename="freak_test.json",
         prepare_messages=_build_freak_messages,
@@ -895,8 +895,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=str, default="results_all")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--judge-model-name", type=str, default="gpt-4o")
-    parser.add_argument("--api-key", type=str, default="sk-Eek0pnQdHdSPIvwfYMvDoCWoI0H6QoakugWZfCViQeWJlIsD")
-    parser.add_argument("--api-url", type=str, default="https://yunwu.ai/v1")
+    parser.add_argument("--api-key", type=str, default=os.getenv("CORRECTION_PROJECT_API_KEY"))
+    parser.add_argument("--api-url", type=str, default=os.getenv("CORRECTION_PROJECT_API_URL", "https://api.openai.com/v1"))
     parser.add_argument("--judge-parallel-num", type=int, default=10)
     parser.add_argument("--judge-temperature", type=float, default=0.0,
                         help="Temperature for answer extraction and LLM judging (default keeps legacy behavior).")
@@ -1191,6 +1191,8 @@ def main() -> None:
     os.makedirs(args.out_dir, exist_ok=True)
 
     benchmark_specs = resolve_benchmark_specs(args.benchmarks)
+    if any(spec.name == "freak" for spec in benchmark_specs) and not os.getenv("FREAK_DATASET_ID"):
+        raise ValueError("Set FREAK_DATASET_ID to the Hugging Face dataset id before evaluating FREAK.")
     print("Selected benchmarks:", [spec.name for spec in benchmark_specs])
 
     llm = build_shared_llm(args.checkpoint, args.tensor_parallel_size)

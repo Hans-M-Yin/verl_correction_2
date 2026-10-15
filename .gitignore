@@ -147,3 +147,34 @@ _preprocessed_dataset
 
 # Local dataset archive upload state and source mapping.
 .dataset_archive/
+
+# Local evaluation artifacts and unpublished research outputs.
+perception/evaluation/results_all/
+perception/evaluation/baselines/
+perception/evaluation/augmented_reflection_results/
+perception/evaluation/eval_results/
+perception/evaluation/robustness_mathvista*.json
+perception/evaluation/reflection_analysis.json
+perception/evaluation/consistency_results.json
+perception/evaluation/evaluation_summary.csv
+perception/evaluation/degraded_ids.json
+perception/evaluation/eval_0307_NO_CORRECTION_REWARD_210/
+perception/evaluation/eval_0307_NO_CORRECTION_REWARD_280/
+_experiments/results/
+synthesis/ignore/
+verification_sample_100.json
+Final_no_correction_FINAL*.pdf
+
+# Checkpoints and local run traces.
+merged_checkpoint/
+commands[0-9]*.txt
+nohup.out
+
+# Local credentials/configuration.
+.env
+.env.*
+!.env.example
+# Remaining local evaluation artifacts; keep files on disk but out of Git.
+perception/evaluation/baseline/
+perception/evaluation/checkpoints_for_repeat.txt
+perception/evaluation/visual_robustness.json
